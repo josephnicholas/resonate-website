@@ -10,7 +10,8 @@
     <meta property="og:title" content="Resonate Music Therapy Studio">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.resonatemusictherapystudio.com">
-    <meta property="og:description" content="Resonate Music Therapy Studio is an establishment offering music therapy services to individuals">
+    <meta property="og:description"
+          content="Resonate Music Therapy Studio is an establishment offering music therapy services to individuals">
     <meta property="og:image" content="image.png"> <!-- TODO -->
     <meta property="og:locale" content="en_US">
     <meta property="og:site_name" content="Resonate Music Therapy Studio">
@@ -23,230 +24,223 @@
 <body>
 <!--Navbar-->
 <header data-bs-theme="light">
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #5E99C8;">
-                    <div class="container-fluid">
-                        <a class="navbar-brand" href="#">
-                            <img src="images/logo.png" class="d-inline-block img-fluid" width="300px" height="300px"
-                                 alt="Resonate Logo"/>
+    <div class="row">
+        <div class="col">
+            <nav class="navbar navbar-expand-xl navbar-light bg-light" style="background-color: #5E99C8;">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">
+                        <img src="images/logo.png" class="d-inline-block img-fluid" width="300px" height="300px"
+                             alt="Resonate Logo"/>
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link active fs-5" aria-current="page" href="#">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link fs-5" href="#">Music Therapy</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link fs-5" href="#">Who We Serve</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle fs-5" href="#" role="button"
+                                   data-bs-toggle="dropdown" aria-expanded="false">Services</a>
+                                <ul class="dropdown-menu"
+                                    aria-label="Services Dropdown">
+                                    <li><a class="dropdown-item fs-5" href="#" aria-current="true">Individual
+                                        Therapy</a>
+                                    </li>
+                                    <li><a class="dropdown-item fs-5" href="#">Group Therapy</a></li>
+                                    <li><a class="dropdown-item fs-5" href="#">Adaptive Music Lessons</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link fs-5" href="#">About Us</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link fs-5" href="#">Contact</a>
+                            </li>
+                        </ul>
+                        <a href="#">
+                            <img src="images/instagram.svg" class="d-inline-block img-fluid px-2" width="50"
+                                 height="50"
+                                 alt="Instagram logo"/>
                         </a>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false"
-                                aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarContent">
-                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                                <li class="nav-item">
-                                    <a class="nav-link active fs-5" aria-current="page" href="#">Home</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link fs-5" href="#">Music Therapy</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link fs-5" href="#">Who We Serve</a>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle fs-5" href="#" role="button"
-                                       data-bs-toggle="dropdown" aria-expanded="false">Services</a>
-                                    <ul class="dropdown-menu"
-                                        aria-label="Services Dropdown">
-                                        <li><a class="dropdown-item fs-5" href="#" aria-current="true">Individual
-                                            Therapy</a>
-                                        </li>
-                                        <li><a class="dropdown-item fs-5" href="#">Group Therapy</a></li>
-                                        <li><a class="dropdown-item fs-5" href="#">Adaptive Music Lessons</a></li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link fs-5" href="#">About Us</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link fs-5" href="#">Contact</a>
-                                </li>
-                            </ul>
-                            <a href="#">
-                                <img src="images/instagram.svg" class="d-inline-block img-fluid px-2" width="50"
-                                     height="50"
-                                     alt="Instagram logo"/>
-                            </a>
-                            <a href="#">
-                                <img src="images/facebook.svg" class="d-inline-block img-fluid px-2" width="50"
-                                     height="50"
-                                     alt="Facebook logo"/>
-                            </a>
-                        </div>
+                        <a href="#">
+                            <img src="images/facebook.svg" class="d-inline-block img-fluid px-2" width="50"
+                                 height="50"
+                                 alt="Facebook logo"/>
+                        </a>
                     </div>
-                </nav>
-            </div>
+                </div>
+            </nav>
         </div>
     </div>
 </header>
-<!--Area for carousel-->
 <main>
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <div id="carouselTherapyImages" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="images/therapy1%20(Medium).jpg" class="d-block w-100"
-                                 alt="Therapy drums"/>
-                        </div>
-                        <div class="carousel-item">
-                            <img src="images/therapy2%20(Medium).jpg" class="d-block w-100"
-                                 alt="Therapy piano"/>
-                        </div>
-                        <div class="carousel-item">
-                            <img src="images/therapy3.jpg" class="d-block w-100"
-                                 alt="Therapy piano"/>
-                        </div>
-                        <div class="carousel-item">
-                            <img src="images/therapy4.jpg" class="d-block w-100"
-                                 alt="Therapy piano"/>
-                        </div>
-                        <div class="carousel-item">
-                            <img src="images/therapy5.jpg" class="d-block w-100"
-                                 alt="Therapy piano"/>
-                        </div>
-                        <div class="carousel-item">
-                            <img src="images/therapy6.jpg" class="d-block w-100"
-                                 alt="Therapy piano"/>
-                        </div>
-                        <div class="carousel-item">
-                            <img src="images/therapy7.jpg" class="d-block w-100"
-                                 alt="Therapy piano"/>
-                        </div>
+    <div class="row">
+        <div class="col">
+            <div id="carouselTherapyImages" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="images/therapy1%20(Medium).jpg" class="d-block w-100"
+                             alt="Therapy drums"/>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselTherapyImages"
-                            data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselTherapyImages"
-                            data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
+                    <div class="carousel-item">
+                        <img src="images/therapy2%20(Medium).jpg" class="d-block w-100"
+                             alt="Therapy piano"/>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="images/therapy3.jpg" class="d-block w-100"
+                             alt="Therapy piano"/>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="images/therapy4.jpg" class="d-block w-100"
+                             alt="Therapy piano"/>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="images/therapy5.jpg" class="d-block w-100"
+                             alt="Therapy piano"/>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="images/therapy6.jpg" class="d-block w-100"
+                             alt="Therapy piano"/>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="images/therapy7.jpg" class="d-block w-100"
+                             alt="Therapy piano"/>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselTherapyImages"
+                        data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselTherapyImages"
+                        data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="col mx-auto mx-auto my-1 py-5">
+        <div class="row featurette">
+            <div class="col px-5">
+                <div class="text-center">
+                    <h2 class="featurette-heading fw-normal lh-1 fs-1">Music Therapy and Child Enrichment Services</h2>
+                    <p class="lead fs-2">
+                        Resonate Music Therapy Studio is the only Music therapy studio in the Visayas located in
+                        Dumaguete City, Negros Oriental. Our studio offers specialized music therapy services catering
+                        to individuals and groups of all ages and abilities.
+                        We are committed to providing inclusive support to everyone who walks through our doors. Whether
+                        you're seeking therapeutic intervention or simply exploring
+                        the healing power of music, we're here to help you on your journey.
+                    </p>
                 </div>
             </div>
         </div>
     </div>
-    <div class="container marketing">
-        <hr class="featurette-divider"/>
+    <div class="col mx-auto mx-auto my-1 py-5">
         <div class="row featurette">
-            <div class="col">
-                <div class="text-center mx-auto w-75">
-                    <h2 class="featurette-heading fw-normal lh-1">Music Therapy and Child Enrichment Services</h2>
-                    <p class="lead">
-                        Resonate Music Therapy Studio is the only Music therapy studio in the Visayas located in
-                        Dumaguete City.
-                        It is a local studio and clinic that provides music therapy services to individuals and groups
-                        across the
-                        lifespan and welcomes ALL abilities.
-                    </p>
-                </div>
-            </div>
-        </div>
-        <hr class="featurette-divider"/>
-        <div class="row featurette">
-            <div class="pb-2">
+            <div class="col px-5">
                 <div class="text-center">
-                    <div class="col">
-                        <h2 class="featurette-heading">What We Do</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-12 mx-auto py-3 d-flex">
-                <div class="card flex-column bg-primary-subtle">
-                    <div class="card-body flex-grow-1">
-                        <h3 class="card-title">Music Therapy</h3>
-                        <p class="lead">
-                            "Music therapy is the clinical and evidence-based use of music interventions to accomplish
-                            individualized goals within a therapeutic relationship by a credentialed professional who
-                            has completed an approved music therapy program." <br> <i>- American Music Therapy
-                            Association</i>
-                        </p>
-                    </div>
-                    <div class="mt-auto ms-3 mb-2">
-                        <a href="#" class="btn btn-primary btn-lg">Learn More</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-12 mx-auto py-3 d-flex">
-                <div class="card flex-column bg-primary-subtle">
-                    <div class="card-body flex-grow-1">
-                        <h3 class="card-title">Individuals</h3>
-                        <p class="lead">
-                            We provide music therapy services to individuals across the lifespan and welcome ALL
-                            abilities.
-                        </p>
-                    </div>
-                    <div class="mt-auto ms-3 mb-2">
-                        <a href="#" class="btn btn-primary btn-lg">Learn More</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-12 mx-auto py-3 d-flex">
-                <div class="card flex-column bg-primary-subtle">
-                    <div class="card-body flex-grow-1">
-                        <h2 class="card-title">Groups</h2>
-                        <p class="lead">
-                            We provide music therapy services to groups across the lifespan and welcome ALL abilities.
-                        </p>
-                    </div>
-                    <div class="mt-auto ms-3 mb-2">
-                        <a href="#" class="btn btn-primary btn-lg">Learn More</a>
-                    </div>
+                    <h2 class="featurette-heading fw-normal lh-1 fs-1">What is Music Therapy</h2>
+                    <p class="lead fs-2">
+                        "Music Therapy is a clinical and evidenced based-based application of music interventions to
+                        accomplish individualized goals within the therapeutic relationship by a credentialed
+                        professional who has completed an approved music therapy program."
+                        <br> <i>- American Music Therapy Association</i>
+                    </p>
                 </div>
             </div>
         </div>
-        <hr class="featurette-divider"/>
-        <div class="card">
-            <div class="card-header">
-                Featured
-            </div>
-            <div class="card-body ">
-                <div class="text-center pb-4">
-                    <img src="images/tempokids.jpg" class="d-inline-block img-fluid" width="300px" height="300px"
-                         alt="Tempo Tunes Logo"/>
-                    <p class="h4">
-                        It is a 10-day program that offers music enrichment classes to babies, toddlers and
-                        preschoolers.
+    </div>
+    <div class="col mx-auto my-1 py-5 services-bg">
+        <div class="text-center pb-4">
+            <p class="mx-auto px-2 fs-1">
+                Our Services
+            </p>
+        </div>
+        <div class="col-xl-10 col-sm-12 mx-auto">
+            <div class="row">
+                <div class="col-xl-3 col-sm-8 mx-auto px-2 py-3">
+                    <h2 class="fs-1">One-on-one music therapy sessions with individuals with specific needs</h2>
+                    <p class="lead fs-3">
+                        Each session is planned and tailored to the needs of the client to achieve their goals.
                     </p>
                 </div>
+                <div class="col-xl-3 col-sm-8 mx-auto px-2 py-3">
+                    <h2 class="fs-1">Adaptive Music Lessons</h2>
+                    <p class="lead fs-3">
+                        Voice, piano, and guitar lessons to adapt to the individual's abilities and needs.
+                    </p>
+                </div>
+                <div class="col-xl-3 col-sm-8 mx-auto px-2 py-3">
+                    <h2 class="fs-1">Music Therapy Group Sessions</h2>
+                    <p class="lead fs-3">
+                        Group sessions for neurodivergent children that need to imprive their social skills. Sessions
+                        will have at least three clients.
+                    </p>
+                </div>
+                <div class="col-xl-3 col-sm-8 mx-auto px-2 py-3">
+                    <h2 class="fs-1">Company Team Building Activities</h2>
+                    <p class="lead fs-3">
+                        Team building activities that are fun and engaging for the employees. It can help improve the
+                        team's communication and collaboration. It can also help reduce stress and improve the team's
+                        morale.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ttk-bg py-5">
+        <div class="col-xl-12 mx-auto my-auto py-5">
+            <div class="text-center pb-4">
+                <img src="images/tempokids.png" class="d-inline-block img-fluid" width="400px" height="400px"
+                     alt="Tempo Tunes Logo"/>
+                <p class="mx-auto px-2 fs-1">
+                    It is a 10-day program that offers music enrichment classes to babies, toddlers and
+                    preschoolers.
+                </p>
+            </div>
+            <div class="col-xl-8 col-sm-12 mx-auto">
                 <div class="row">
-                    <div class="col-md-2">
-                        <p class="lead">
+                    <div class="col-xl-4 col-sm-8 mx-auto py-3">
+                        <p class="lead fs-3">
                             Learning and experiencing music boosts the brain. It can impact a child's development.
                         </p>
                     </div>
-                    <div class="col-md-2">
-                        <p class="lead">
+                    <div class="col-xl-4 col-sm-8 mx-auto py-3">
+                        <p class="lead fs-3">
                             Classes are filled with fun and entertaining activities that are also beneficial to the
                             child.
                         </p>
                     </div>
-                    <div class="col-md-2">
-                        <p class="lead">
+                    <div class="col-xl-4 col-sm-8 mx-auto py-3">
+                        <p class="lead fs-3">
                             Provides a clean and safe environment and loving atmosphere for learning.
                         </p>
                     </div>
-                    <div class="col-md-2">
-                        <p class="lead">
+                    <div class="col-xl-4 col-sm-8 mx-auto py-3">
+                        <p class="lead fs-3">
                             A play based program which uses music to achieve both musical and non-musical goals.
                         </p>
                     </div>
-                    <div class="col-md-2">
-                        <p class="lead">
+                    <div class="col-xl-4 col-sm-8 mx-auto py-3">
+                        <p class="lead fs-3">
                             Good way for parents to spend time with their child and for families to come together to
                             bond.
                         </p>
                     </div>
-                    <div class="col-md-2">
-                        <p class="lead">
+                    <div class="col-xl-4 col-sm-8 mx-auto py-3">
+                        <p class="lead fs-3">
                             We use live music in almost all of our classes.
                         </p>
                     </div>
