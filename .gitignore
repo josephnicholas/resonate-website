@@ -129,8 +129,8 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-# TanStack Router (auto-generated on dev/build)
-src/routeTree.gen.ts
+# TanStack Router (regenerated on dev/build; committed so a fresh
+# checkout can typecheck before anything has run vite once)
 .tanstack/
 
 # Playwright
