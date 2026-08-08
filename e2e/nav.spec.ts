@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 const topLevelLinks = [
-  { name: 'Home', heading: 'Home', path: '/' },
+  { name: 'Home', heading: 'Music Therapy and Child Enrichment Services', path: '/' },
   { name: 'Music Therapy', heading: 'Music Therapy', path: '/music-therapy' },
   { name: 'Who We Serve', heading: 'Who We Serve', path: '/who-we-serve' },
   { name: 'About Us', heading: 'About Us', path: '/about' },
@@ -23,21 +23,23 @@ test.describe('desktop nav', () => {
   for (const link of topLevelLinks) {
     test(`"${link.name}" navigates to ${link.path}`, async ({ page }) => {
       await page.goto('/')
-      await page.getByRole('link', { name: link.name, exact: true }).click()
+      const nav = page.getByRole('navigation', { name: 'Primary' })
+      await nav.getByRole('link', { name: link.name, exact: true }).click()
 
       await expect(page).toHaveURL(link.path)
-      await expect(page.getByRole('heading', { name: link.heading })).toBeVisible()
+      await expect(page.getByRole('heading', { name: link.heading, exact: true })).toBeVisible()
     })
   }
 
   test('current route is indicated with aria-current', async ({ page }) => {
     await page.goto('/about')
+    const nav = page.getByRole('navigation', { name: 'Primary' })
 
-    await expect(page.getByRole('link', { name: 'About Us', exact: true })).toHaveAttribute(
+    await expect(nav.getByRole('link', { name: 'About Us', exact: true })).toHaveAttribute(
       'aria-current',
       'page',
     )
-    await expect(page.getByRole('link', { name: 'Home', exact: true })).not.toHaveAttribute(
+    await expect(nav.getByRole('link', { name: 'Home', exact: true })).not.toHaveAttribute(
       'aria-current',
       'page',
     )
@@ -45,29 +47,32 @@ test.describe('desktop nav', () => {
 
   test('Services opens a dropdown', async ({ page }) => {
     await page.goto('/')
+    const nav = page.getByRole('navigation', { name: 'Primary' })
 
-    await page.getByText('Services', { exact: true }).click()
+    await nav.getByText('Services', { exact: true }).click()
 
     for (const link of servicesLinks) {
-      await expect(page.getByRole('link', { name: link.name, exact: true })).toBeVisible()
+      await expect(nav.getByRole('link', { name: link.name, exact: true })).toBeVisible()
     }
   })
 
   for (const link of servicesLinks) {
     test(`Services dropdown "${link.name}" navigates to ${link.path}`, async ({ page }) => {
       await page.goto('/')
-      await page.getByText('Services', { exact: true }).click()
-      await page.getByRole('link', { name: link.name, exact: true }).click()
+      const nav = page.getByRole('navigation', { name: 'Primary' })
+      await nav.getByText('Services', { exact: true }).click()
+      await nav.getByRole('link', { name: link.name, exact: true }).click()
 
       await expect(page).toHaveURL(link.path)
-      await expect(page.getByRole('heading', { name: link.heading })).toBeVisible()
+      await expect(page.getByRole('heading', { name: link.heading, exact: true })).toBeVisible()
     })
   }
 
   test('Services summary is marked current while on any services route', async ({ page }) => {
     await page.goto('/services/group-therapy')
+    const nav = page.getByRole('navigation', { name: 'Primary' })
 
-    await expect(page.getByText('Services', { exact: true })).toHaveAttribute('aria-current', 'page')
+    await expect(nav.getByText('Services', { exact: true })).toHaveAttribute('aria-current', 'page')
   })
 })
 
@@ -89,14 +94,15 @@ test.describe('mobile nav', () => {
     test(`"${link.name}" navigates to ${link.path} from the mobile menu`, async ({ page }) => {
       await page.goto('/')
       await page.getByRole('button', { name: 'Open menu' }).click()
+      const nav = page.getByRole('navigation', { name: 'Primary' })
 
       if (servicesLinks.includes(link)) {
-        await page.getByText('Services', { exact: true }).click()
+        await nav.getByText('Services', { exact: true }).click()
       }
-      await page.getByRole('link', { name: link.name, exact: true }).click()
+      await nav.getByRole('link', { name: link.name, exact: true }).click()
 
       await expect(page).toHaveURL(link.path)
-      await expect(page.getByRole('heading', { name: link.heading })).toBeVisible()
+      await expect(page.getByRole('heading', { name: link.heading, exact: true })).toBeVisible()
     })
   }
 })

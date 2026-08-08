@@ -59,25 +59,27 @@
   --color-neutral-900: #1c1916;
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
 
-body {
-  margin: 0;
-  font-family: var(--font-body);
-  color: var(--color-neutral-700);
-  background-color: var(--color-neutral-50);
-}
+  body {
+    margin: 0;
+    font-family: var(--font-body);
+    color: var(--color-neutral-700);
+    background-color: var(--color-neutral-50);
+  }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--font-heading);
-  color: var(--color-primary-600);
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+    color: var(--color-primary-600);
+  }
 }
