@@ -128,3 +128,20 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# TanStack Router (regenerated on dev/build; committed so a fresh
+# checkout can typecheck before anything has run vite once)
+.tanstack/
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+
+# design-sync (claude.ai/design import) — staged converter, build output, machine state
+/.ds-sync/
+/ds-bundle/
+/.design-sync/.cache/
+/.design-sync/learnings/
+/.design-sync/node_modules

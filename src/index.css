@@ -1,0 +1,85 @@
+@import '@fontsource/quicksand/latin-500.css';
+@import '@fontsource/quicksand/latin-600.css';
+@import '@fontsource/quicksand/latin-700.css';
+@import '@fontsource/inter/latin-400.css';
+@import '@fontsource/inter/latin-500.css';
+@import '@fontsource/inter/latin-600.css';
+@import 'tailwindcss';
+
+@theme {
+  --font-heading: 'Quicksand', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  /* Primary — navy, sampled from the studio logo. Headings, nav, footer. */
+  --color-primary-50: #eef2f8;
+  --color-primary-100: #dce5f1;
+  --color-primary-200: #b9cce3;
+  --color-primary-300: #8fadd0;
+  --color-primary-400: #5c82b0;
+  --color-primary-500: #35608f;
+  --color-primary-600: #224375;
+  --color-primary-700: #1b3660;
+  --color-primary-800: #15294b;
+  --color-primary-900: #101f39;
+
+  /* Secondary — soft desaturated tint of the logo's sky-blue. Section backgrounds. */
+  --color-secondary-50: #f5fafe;
+  --color-secondary-100: #eaf5fc;
+  --color-secondary-200: #d3eafa;
+  --color-secondary-300: #b4ddf8;
+  --color-secondary-400: #84cefc;
+  --color-secondary-500: #5eb8f0;
+  --color-secondary-600: #3e9bd9;
+  --color-secondary-700: #2e78ad;
+  --color-secondary-800: #245d87;
+  --color-secondary-900: #1d4a6c;
+
+  /* Accent — magenta, sampled from the logo. Sparing use only: CTAs, active states. */
+  --color-accent-50: #fde9f1;
+  --color-accent-100: #fbd2e3;
+  --color-accent-200: #f7a5c7;
+  --color-accent-300: #f278ab;
+  --color-accent-400: #ee4b8f;
+  --color-accent-500: #e90e65;
+  --color-accent-600: #c60c56;
+  --color-accent-700: #9e0a45;
+  --color-accent-800: #78082f;
+  --color-accent-900: #5c0724;
+
+  /* Neutral — warm off-white/gray, not pure white/black. */
+  --color-neutral-50: #faf8f5;
+  --color-neutral-100: #f3f0eb;
+  --color-neutral-200: #e4dfda;
+  --color-neutral-300: #cfc8c0;
+  --color-neutral-400: #a69e94;
+  --color-neutral-500: #7d766c;
+  --color-neutral-600: #5e574e;
+  --color-neutral-700: #443f3a;
+  --color-neutral-800: #2e2a26;
+  --color-neutral-900: #1c1916;
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    font-family: var(--font-body);
+    color: var(--color-neutral-700);
+    background-color: var(--color-neutral-50);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+    color: var(--color-primary-600);
+  }
+}
