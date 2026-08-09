@@ -6,7 +6,9 @@ import tseslint from 'typescript-eslint'
 import { globalIgnores } from 'eslint/config'
 
 export default tseslint.config(
-  globalIgnores(['dist', 'src/routeTree.gen.ts']),
+  // `.design-sync`/`.ds-sync`/`ds-bundle` hold the claude.ai/design import's
+  // inputs and output — preview compositions and a staged converter, not app code.
+  globalIgnores(['dist', 'src/routeTree.gen.ts', '.design-sync', '.ds-sync', 'ds-bundle']),
   {
     files: ['**/*.{ts,tsx}'],
     extends: [

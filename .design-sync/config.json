@@ -1,0 +1,39 @@
+{
+  "projectId": "4dac2e9f-caca-451f-b585-6a79ab79992e",
+  "shape": "package",
+  "pkg": "resonate-website",
+  "globalName": "ResonateDS",
+  "entry": "./.design-sync/entry.ts",
+  "srcDir": "src/components",
+  "tsconfig": "tsconfig.app.json",
+  "buildCmd": "node .design-sync/prepare-css.mjs",
+  "cssEntry": ".design-sync/.cache/compiled.css",
+  "docsDir": ".design-sync/docs",
+  "readmeHeader": ".design-sync/conventions.md",
+  "extraEntries": ["./.design-sync/preview-provider.tsx"],
+  "provider": { "component": "PreviewRouterProvider" },
+  "componentSrcMap": {
+    "AmtaDefinition": "src/components/AmtaDefinition.tsx",
+    "Carousel": "src/components/Carousel.tsx",
+    "DraftNotice": "src/components/DraftNotice.tsx",
+    "Footer": "src/components/Footer.tsx",
+    "ImagePlaceholder": "src/components/ImagePlaceholder.tsx",
+    "Nav": "src/components/Nav.tsx"
+  },
+  "overrides": {
+    "AmtaDefinition": { "cardMode": "column" },
+    "Carousel": { "cardMode": "column" },
+    "DraftNotice": { "cardMode": "column" },
+    "Footer": { "cardMode": "column" },
+    "ImagePlaceholder": { "cardMode": "column" },
+    "Nav": { "cardMode": "column" }
+  },
+  "dtsPropsFor": {
+    "AmtaDefinition": "",
+    "Carousel": "  /** Photos to show, in order. The carousel loops back to the first. */\n  slides: { src: string; alt: string }[];\n  /** Accessible name for the carousel region, e.g. \"Photos from Resonate Music Therapy Studio\". */\n  label: string;",
+    "DraftNotice": "",
+    "Footer": "",
+    "ImagePlaceholder": "  /** Visible caption and accessible label — the alt text the real photo will carry. */\n  description: string;\n  /** Appended to the built-in classes; this is how the box gets its dimensions. */\n  className?: string;",
+    "Nav": ""
+  }
+}

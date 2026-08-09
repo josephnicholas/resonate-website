@@ -1,0 +1,54 @@
+/* design-sync stylesheet entry (see .design-sync/NOTES.md).
+ *
+ * The site's own `src/index.css` is the source of truth for tokens and base
+ * styles — this file imports it verbatim and adds nothing but reach.
+ *
+ * Why it exists: Tailwind v4 only emits a `@theme` variable into `:root` when
+ * something in the scanned source uses it, and only emits a utility class that
+ * some file actually names. The site uses a fraction of its own palette, so a
+ * stylesheet compiled from the app alone would ship a DS whose `bg-primary-500`
+ * resolves to nothing. The design agent writes classes we cannot predict, so the
+ * safelist below forces the whole brand ramp — every shade of every palette, in
+ * the properties designs actually reach for — into the shipped CSS.
+ */
+
+@import "../src/index.css";
+
+@source "../src";
+@source "./previews";
+
+/* Full brand ramp: 4 palettes x 10 shades. */
+@source inline("{bg,text,border,ring,from,via,to}-{primary,secondary,accent,neutral}-{50,100,200,300,400,500,600,700,800,900}");
+
+/* The two brand families, as utilities. */
+@source inline("font-{heading,body}");
+
+/* A working layout vocabulary. Same reasoning as the palette: the design agent
+ * composes screens around these components with its own layout glue, and a
+ * utility that no file in this repo happens to name would not exist in the
+ * shipped CSS — its class would resolve to nothing. Kept deliberately bounded
+ * (no arbitrary values, responsive variants only where layout really reflows). */
+@source inline("{p,px,py,pt,pb,pl,pr,m,mx,my,mt,mb,gap,gap-x,gap-y}-{0,1,2,3,4,5,6,8,10,12,16,20,24}");
+@source inline("space-{x,y}-{1,2,3,4,6,8}");
+@source inline("text-{xs,sm,base,lg,xl,2xl,3xl,4xl,5xl}");
+@source inline("font-{normal,medium,semibold,bold}");
+@source inline("{leading,tracking}-{tight,snug,normal,relaxed,loose}");
+@source inline("text-{left,center,right}");
+@source inline("rounded{,-sm,-md,-lg,-xl,-2xl,-3xl,-full}");
+@source inline("shadow{,-sm,-md,-lg,-xl,-none}");
+@source inline("border{,-0,-2,-4,-t,-b,-l,-r}");
+@source inline("{flex,grid,block,inline-block,inline-flex,hidden,relative,absolute,sticky}");
+@source inline("{md,lg}:{flex,grid,block,inline-flex,hidden}");
+@source inline("flex-{row,col,wrap,nowrap,1}");
+@source inline("md:flex-{row,col}");
+@source inline("items-{start,center,end,stretch,baseline}");
+@source inline("justify-{start,center,end,between,around,evenly}");
+@source inline("grid-cols-{1,2,3,4,5,6,12}");
+@source inline("{sm,md,lg}:grid-cols-{1,2,3,4,6}");
+@source inline("col-span-{1,2,3,4,6,full}");
+@source inline("{w,h}-{full,auto,screen,px,4,6,8,10,12,16,20,24,32,40,48,56,64}");
+@source inline("max-w-{xs,sm,md,lg,xl,2xl,3xl,4xl,5xl,6xl,7xl,full,prose,none}");
+@source inline("min-h-{screen,full}");
+@source inline("object-{cover,contain,center}");
+@source inline("overflow-{hidden,auto,x-auto,y-auto}");
+@source inline("{aspect}-{square,video,auto}");
