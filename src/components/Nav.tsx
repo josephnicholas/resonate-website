@@ -25,7 +25,7 @@ type NavLinkItem =
   | (typeof servicesLinks)[number]
   | (typeof trailingLinks)[number]
 
-const linkClassName = 'block px-3 py-2 font-heading font-medium text-white hover:text-secondary-300'
+const linkClassName = 'block px-3 py-2 font-heading font-semibold text-xl text-blue-600/75 hover:text-secondary-600'
 const activeLinkProps = {
   className: 'text-accent-200',
   'aria-current': 'page' as const,
@@ -50,15 +50,14 @@ export function Nav() {
   const isServicesActive = pathname.startsWith('/services')
 
   return (
-    <header className="bg-primary-600">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-        <Link to="/" className="flex items-center">
-          <img src={logo} alt="Resonate Music Therapy Studio" className="h-10 w-auto" />
+    <header className="bg-primary-100">
+      <div className="flex w-full flex-wrap items-center justify-between gap-x-8 px-6 py-12 md:px-12">
+        <Link to="/" className="flex shrink-0 items-center">
+          <img src={logo} alt="Resonate Music Therapy Studio" className="h-12 w-auto sm:h-16 xl:h-18" />
         </Link>
-
         <button
           type="button"
-          className="rounded p-2 text-white md:hidden"
+          className="rounded p-2 text-primary-700 xl:hidden"
           aria-expanded={mobileOpen}
           aria-controls="primary-navigation"
           onClick={() => setMobileOpen((open) => !open)}
@@ -76,9 +75,9 @@ export function Nav() {
         <nav
           id="primary-navigation"
           aria-label="Primary"
-          className={`${mobileOpen ? 'block' : 'hidden'} w-full md:block md:w-auto`}
+          className={`${mobileOpen ? 'block' : 'hidden'} w-full xl:block xl:w-auto`}
         >
-          <ul className="flex flex-col md:flex-row md:items-center">
+          <ul className="flex flex-col xl:flex-row xl:items-center">
             {primaryLinks.map((link) => (
               <li key={link.to}>
                 <NavLink item={link} />
@@ -95,7 +94,7 @@ export function Nav() {
                 >
                   Services
                 </summary>
-                <ul className="bg-primary-700 md:absolute md:left-0 md:top-full md:z-10 md:min-w-max md:rounded-b md:shadow-lg">
+                <ul className="bg-primary-700 xl:absolute xl:left-0 xl:top-full xl:z-10 xl:min-w-max xl:rounded-b xl:shadow-lg">
                   {servicesLinks.map((link) => (
                     <li key={link.to}>
                       <NavLink item={link} />

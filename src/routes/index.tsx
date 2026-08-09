@@ -11,6 +11,7 @@ import therapy7 from '../assets/therapy7.jpg'
 import servicesBg from '../assets/services-bg.jpg'
 import ttkBg from '../assets/kids-background-ttk.jpg'
 import tempoTunesLogo from '../assets/tempokids.png'
+import {ImagePlaceholder} from "../components/ImagePlaceholder.tsx";
 
 export const Route = createFileRoute('/')({
   component: HomePage,
@@ -57,7 +58,8 @@ const tempoTunesPoints = [
 function HomePage() {
   return (
     <main>
-      <Carousel slides={carouselSlides} label="Photos from Resonate Music Therapy Studio" />
+      {/*<Carousel slides={carouselSlides} label="Photos from Resonate Music Therapy Studio" />*/}
+      <ImagePlaceholder description="Front page photo on the Resonate team" className="py-64" />
 
       <section className="mx-auto max-w-3xl px-4 py-12 text-center">
         <h1 className="font-heading text-3xl font-semibold sm:text-4xl">
