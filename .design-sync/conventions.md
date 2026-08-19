@@ -43,20 +43,18 @@ House patterns worth copying: page grounds are `bg-neutral-50`, not white; conte
 
 - `styles.css` and its `@import` closure (`fonts/fonts.css`, `_ds_bundle.css`) — the real tokens, `@font-face` rules, and every available class. Read `_ds_bundle.css` when unsure whether a utility exists.
 - `components/<group>/<Name>/<Name>.prompt.md` — per-component usage, props, behaviour and composition notes. Read this before using a component; each one documents constraints you cannot guess (e.g. `ImagePlaceholder` collapses without a sizing `className`, `AmtaDefinition`'s quotation must not be reworded).
-- `components/<group>/<Name>/<Name>.d.ts` — the prop contract. Only `Carousel` and `ImagePlaceholder` take props; the other four take none.
+- `components/<group>/<Name>/<Name>.d.ts` — the prop contract. Only `ImagePlaceholder` takes props; the other four take none.
 
-Groups: **layout** (`Nav`, `Footer`), **media** (`Carousel`, `ImagePlaceholder`), **content** (`AmtaDefinition`, `DraftNotice`).
+Groups: **layout** (`Nav`, `Footer`), **media** (`ImagePlaceholder`), **content** (`AmtaDefinition`, `DraftNotice`).
 
 ## An idiomatic page
 
 ```jsx
-const { PreviewRouterProvider, Nav, Footer, Carousel, AmtaDefinition, ImagePlaceholder } = window.ResonateDS;
+const { PreviewRouterProvider, Nav, Footer, AmtaDefinition, ImagePlaceholder } = window.ResonateDS;
 
 <PreviewRouterProvider>
   <Nav />
   <main className="bg-neutral-50">
-    <Carousel slides={slides} label="Photos from Resonate Music Therapy Studio" />
-
     <section className="mx-auto max-w-6xl px-4 py-12">
       <h2 className="text-center font-heading text-3xl font-semibold text-primary-700">Our Services</h2>
       <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">

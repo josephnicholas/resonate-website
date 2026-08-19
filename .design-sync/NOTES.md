@@ -78,13 +78,11 @@ Consequences to keep in mind:
   exports `PreviewRouterProvider`, wired via `cfg.extraEntries` + `cfg.provider`.
   It uses `RouterContextProvider`, **not** `RouterProvider` — the latter ignores
   children and renders the router's own matched routes instead.
-- **Carousel photos are inlined data URIs.** The converter's esbuild has a
-  `.png` loader but **no `.jpg` loader**, and the studio photos are ~700 KB each.
-  `.design-sync/previews/carousel-slides.ts` holds three of them downscaled to
-  720px / JPEG q0.72 (~200 KB total), generated once via a headless-chromium
-  canvas resize. To refresh or add slides, redo that downscale — do not import
-  the `.jpg` files directly, the preview build will fail to compile.
-- All six components are full-width or page-level, so every one carries
+- **The converter's esbuild has a `.png` loader but no `.jpg` loader**, and the
+  studio photos are ~700 KB each. A preview that needs one must inline a
+  downscaled data URI rather than importing the `.jpg` directly, or the preview
+  build will fail to compile.
+- All five components are full-width or page-level, so every one carries
   `cfg.overrides.<Name>.cardMode = "column"`. Without it the multi-export grid
   squeezes them into narrow cells and clips the text.
 - Preview cell order is alphabetical by export name, so the canonical story is
@@ -105,14 +103,14 @@ Consequences to keep in mind:
 ## Known render warns
 
 None. As of the first sync, `package-validate.mjs` exits 0 with no warn lines and
-all 6 components render cleanly (0 floor cards). A warn line on a future run is
+all components render cleanly (0 floor cards). A warn line on a future run is
 therefore new — investigate it rather than assuming it is pre-existing.
 
 ## Re-sync risks — what can silently go stale
 
-- **`dtsPropsFor` is hand-written.** Change `CarouselProps` or
-  `ImagePlaceholderProps` in `src/components/` and nothing will fail; the design
-  agent just gets a stale contract. Re-read both components' props on every sync.
+- **`dtsPropsFor` is hand-written.** Change `ImagePlaceholderProps` in
+  `src/components/` and nothing will fail; the design agent just gets a stale
+  contract. Re-read the component's props on every sync.
 - **`.design-sync/entry.ts` and `componentSrcMap` are hand-maintained.** A new
   component in `src/components/` is invisible to the sync until added to both.
   A renamed or deleted one leaves an orphan in the uploaded project — the
@@ -124,8 +122,6 @@ therefore new — investigate it rather than assuming it is pre-existing.
 - **The safelist in `ds.css` is a guess at what the design agent will reach for.**
   If designs come back with unstyled gaps, the fix is almost always a missing
   utility family there, not a component bug.
-- **The Carousel slide data URIs are a frozen copy** of three photos in
-  `src/assets/`. If the studio's photography is replaced, these do not update.
 - **Fonts are pinned to hashed filenames** (`inter-latin-400-normal-C38fXH4l.woff2`)
   produced by the Vite build. A `@fontsource` version bump rehashes them; the
   converter re-copies automatically, but old files linger in the uploaded project

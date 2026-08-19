@@ -14,7 +14,6 @@
   "provider": { "component": "PreviewRouterProvider" },
   "componentSrcMap": {
     "AmtaDefinition": "src/components/AmtaDefinition.tsx",
-    "Carousel": "src/components/Carousel.tsx",
     "DraftNotice": "src/components/DraftNotice.tsx",
     "Footer": "src/components/Footer.tsx",
     "ImagePlaceholder": "src/components/ImagePlaceholder.tsx",
@@ -22,7 +21,6 @@
   },
   "overrides": {
     "AmtaDefinition": { "cardMode": "column" },
-    "Carousel": { "cardMode": "column" },
     "DraftNotice": { "cardMode": "column" },
     "Footer": { "cardMode": "column" },
     "ImagePlaceholder": { "cardMode": "column" },
@@ -30,7 +28,6 @@
   },
   "dtsPropsFor": {
     "AmtaDefinition": "",
-    "Carousel": "  /** Photos to show, in order. The carousel loops back to the first. */\n  slides: { src: string; alt: string }[];\n  /** Accessible name for the carousel region, e.g. \"Photos from Resonate Music Therapy Studio\". */\n  label: string;",
     "DraftNotice": "",
     "Footer": "",
     "ImagePlaceholder": "  /** Visible caption and accessible label — the alt text the real photo will carry. */\n  description: string;\n  /** Appended to the built-in classes; this is how the box gets its dimensions. */\n  className?: string;",

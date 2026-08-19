@@ -9,7 +9,6 @@
 // it here and to `componentSrcMap` in .design-sync/config.json.
 
 export { AmtaDefinition } from '../src/components/AmtaDefinition'
-export { Carousel } from '../src/components/Carousel'
 export { DraftNotice } from '../src/components/DraftNotice'
 export { Footer } from '../src/components/Footer'
 export { ImagePlaceholder } from '../src/components/ImagePlaceholder'

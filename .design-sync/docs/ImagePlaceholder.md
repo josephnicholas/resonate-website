@@ -27,5 +27,5 @@ The box is a `figure` with `role="img"` and `aria-label={description}`, so assis
 ## Composition notes
 
 - It has no intrinsic size — without a `className` giving it height (and usually width) it collapses to icon-plus-caption. Always pass one.
-- Use it wherever the layout is final but the photography isn't; swap it for an `<img>` (or `Carousel`) once the real asset exists.
+- Use it wherever the layout is final but the photography isn't; swap it for an `<img>` once the real asset exists.
 - It shares the dashed `secondary-400` border and `secondary-100` fill with `DraftNotice`, which is what marks both as provisional.

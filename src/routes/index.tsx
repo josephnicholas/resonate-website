@@ -1,31 +1,13 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
-import { Carousel } from '../components/Carousel'
 import { AmtaDefinition } from '../components/AmtaDefinition'
-import therapy1 from '../assets/therapy1 (Medium).jpg'
-import therapy2 from '../assets/therapy2 (Medium).jpg'
-import therapy3 from '../assets/therapy3.jpg'
-import therapy4 from '../assets/therapy4.jpg'
-import therapy5 from '../assets/therapy5.jpg'
-import therapy6 from '../assets/therapy6.jpg'
-import therapy7 from '../assets/therapy7.jpg'
 import servicesBg from '../assets/services-bg.jpg'
 import ttkBg from '../assets/kids-background-ttk.jpg'
 import tempoTunesLogo from '../assets/tempokids.png'
-import {ImagePlaceholder} from "../components/ImagePlaceholder.tsx";
+import logo from '../assets/logo.png'
 
 export const Route = createFileRoute('/')({
   component: HomePage,
 })
-
-const carouselSlides = [
-  { src: therapy1, alt: 'A music therapist and a young client each playing a hand drum together' },
-  { src: therapy2, alt: 'A music therapist and a child playing piano together' },
-  { src: therapy3, alt: 'A music therapist leading a group therapy session with hand percussion instruments' },
-  { src: therapy4, alt: 'Participants in a group music therapy session playing shakers and drums together' },
-  { src: therapy5, alt: 'A music therapist guiding a group session with tambourines and hand drums' },
-  { src: therapy6, alt: 'A music therapist facilitating discussion during a group therapy session' },
-  { src: therapy7, alt: 'A music therapist engaging with participants in a group therapy circle' },
-]
 
 const services = [
   {
@@ -58,8 +40,14 @@ const tempoTunesPoints = [
 function HomePage() {
   return (
     <main>
-      {/*<Carousel slides={carouselSlides} label="Photos from Resonate Music Therapy Studio" />*/}
-      <ImagePlaceholder description="Front page photo on the Resonate team" className="py-64" />
+      <section
+        className="relative bg-cover bg-center px-4 py-72"
+        style={{ backgroundImage: `url(${ttkBg})` }}
+      >
+        <div aria-hidden="true" className="absolute inset-0 bg-primary-900/70" />
+        {/* Decorative: the studio is already named by the nav logo and the h1 directly below. */}
+        <img src={logo} alt="" className="relative z-10 mx-auto w-6/12" />
+      </section>
 
       <section className="mx-auto max-w-3xl px-4 py-12 text-center">
         <h1 className="font-heading text-3xl font-semibold sm:text-4xl">
