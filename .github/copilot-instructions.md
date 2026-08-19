@@ -29,15 +29,15 @@ A failing test blocks deploy in CI (`.github/workflows/deploy.yml`).
 - **`src/assets/`** — logos, social SVGs, photos, imported as ES modules (build-time errors on typos, not runtime 404s). Two filenames have spaces (`therapy1 (Medium).jpg`, `therapy2 (Medium).jpg`).
 - **`public/`** — served verbatim: `favicon.ico`, `CNAME` (custom domain — do not delete/rename), `tempokids.jpg` (Open Graph image; `<meta>` tags aren't asset-processed by Vite, so this needs a real static copy).
 - **`src/test/`** — Vitest/RTL setup + tests, kept outside `src/routes/` so the router's file-based generator doesn't trip over non-route files.
-- **`e2e/`** — Playwright specs.
+- **`e2e/`** — Playwright specs, plus `routes.ts`: the shared list of the site's nine routes.
 
-This is a migration-in-progress (see `CONTEXT.md` and `docs/adr/`): routes currently render placeholder headings only — content and the Tailwind design system land in later tickets.
+The migration is complete (see `CONTEXT.md` and `docs/adr/`): every route carries real content and the Tailwind design system.
 
 ## Key Conventions
 
 - TypeScript strict mode is on.
 - Route files export only `export const Route = createFileRoute(...)`; the component itself is defined but not exported, and `react-refresh/only-export-components` is disabled for `src/routes/**` accordingly.
-- No Tailwind yet — don't add ad hoc CSS for new UI, that's scoped to the design-system ticket.
+- Style with the brand tokens in `src/index.css` (`primary`/`secondary`/`accent`/`neutral`, `font-heading`/`font-body`), not stock Tailwind palettes or ad hoc CSS — the contrast audit in `e2e/accessibility.spec.ts` fails on off-palette colours.
 
 ## Deployment
 

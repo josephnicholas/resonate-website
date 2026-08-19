@@ -25,10 +25,25 @@ type NavLinkItem =
   | (typeof servicesLinks)[number]
   | (typeof trailingLinks)[number]
 
-const linkClassName = 'block px-3 py-2 font-heading font-semibold text-xl text-blue-600/75 hover:text-secondary-600'
+// Colours are pinned to the dark end of the brand scales: the nav sits on
+// `primary-100` (and the dropdown panel on `primary-50`), so anything lighter
+// than `primary-700`/`secondary-800`/`accent-700` drops below the 4.5:1 the
+// contrast audit enforces (see e2e/accessibility.spec.ts).
+//
+// The active and inactive colours are kept in *separate* class strings and
+// applied exclusively. Putting the base colour in `linkClassName` and appending
+// the active one leaves both `text-*` utilities on the element, and then the
+// stylesheet's emission order decides which wins — not the authoring order.
+const linkClassName = 'block px-3 py-2 font-heading font-semibold text-xl'
+const activeColorClassName = 'text-accent-700'
+const inactiveColorClassName = 'text-primary-700 hover:text-secondary-800'
+
 const activeLinkProps = {
-  className: 'text-accent-200',
+  className: activeColorClassName,
   'aria-current': 'page' as const,
+}
+const inactiveLinkProps = {
+  className: inactiveColorClassName,
 }
 
 function NavLink({ item }: { item: NavLinkItem }) {
@@ -38,6 +53,7 @@ function NavLink({ item }: { item: NavLinkItem }) {
       activeOptions={{ exact: true }}
       className={linkClassName}
       activeProps={activeLinkProps}
+      inactiveProps={inactiveLinkProps}
     >
       {item.label}
     </Link>
@@ -88,13 +104,13 @@ export function Nav() {
               <details className="group [&::details-content]:block">
                 <summary
                   className={`${linkClassName} cursor-pointer list-none [&::-webkit-details-marker]:hidden ${
-                    isServicesActive ? 'text-accent-200' : ''
+                    isServicesActive ? activeColorClassName : inactiveColorClassName
                   }`}
                   aria-current={isServicesActive ? 'page' : undefined}
                 >
                   Services
                 </summary>
-                <ul className="bg-primary-700 xl:absolute xl:left-0 xl:top-full xl:z-10 xl:min-w-max xl:rounded-b xl:shadow-lg">
+                <ul className="bg-primary-50 xl:absolute xl:left-0 xl:top-full xl:z-10 xl:min-w-max xl:rounded-b xl:shadow-lg">
                   {servicesLinks.map((link) => (
                     <li key={link.to}>
                       <NavLink item={link} />

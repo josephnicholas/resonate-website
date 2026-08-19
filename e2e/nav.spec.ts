@@ -1,26 +1,8 @@
 import { test, expect } from '@playwright/test'
-
-const topLevelLinks = [
-  { name: 'Home', heading: 'Music Therapy and Child Enrichment Services', path: '/' },
-  { name: 'Music Therapy', heading: 'Music Therapy', path: '/music-therapy' },
-  { name: 'Who We Serve', heading: 'Who We Serve', path: '/who-we-serve' },
-  { name: 'About Us', heading: 'About Us', path: '/about' },
-  { name: 'Contact', heading: 'Contact', path: '/contact' },
-]
-
-const servicesLinks = [
-  { name: 'All Services', heading: 'Our Services', path: '/services' },
-  { name: 'Individual Therapy', heading: 'Individual Therapy', path: '/services/individual-therapy' },
-  { name: 'Group Therapy', heading: 'Group Therapy', path: '/services/group-therapy' },
-  {
-    name: 'Adaptive Music Lessons',
-    heading: 'Adaptive Music Lessons',
-    path: '/services/adaptive-music-lessons',
-  },
-]
+import { servicesRoutes, topLevelRoutes } from './routes.ts'
 
 test.describe('desktop nav', () => {
-  for (const link of topLevelLinks) {
+  for (const link of topLevelRoutes) {
     test(`"${link.name}" navigates to ${link.path}`, async ({ page }) => {
       await page.goto('/')
       const nav = page.getByRole('navigation', { name: 'Primary' })
@@ -45,18 +27,35 @@ test.describe('desktop nav', () => {
     )
   })
 
+  // aria-current alone passes even when the two colour utilities collide and the
+  // stylesheet's emission order silently drops the active colour, leaving no
+  // visible current-page marker at all.
+  test('current route is also indicated visually', async ({ page }) => {
+    await page.goto('/about')
+    const nav = page.getByRole('navigation', { name: 'Primary' })
+
+    const activeColor = await nav
+      .getByRole('link', { name: 'About Us', exact: true })
+      .evaluate((el) => el.ownerDocument.defaultView!.getComputedStyle(el).color)
+    const inactiveColor = await nav
+      .getByRole('link', { name: 'Home', exact: true })
+      .evaluate((el) => el.ownerDocument.defaultView!.getComputedStyle(el).color)
+
+    expect(activeColor).not.toBe(inactiveColor)
+  })
+
   test('Services opens a dropdown', async ({ page }) => {
     await page.goto('/')
     const nav = page.getByRole('navigation', { name: 'Primary' })
 
     await nav.getByText('Services', { exact: true }).click()
 
-    for (const link of servicesLinks) {
+    for (const link of servicesRoutes) {
       await expect(nav.getByRole('link', { name: link.name, exact: true })).toBeVisible()
     }
   })
 
-  for (const link of servicesLinks) {
+  for (const link of servicesRoutes) {
     test(`Services dropdown "${link.name}" navigates to ${link.path}`, async ({ page }) => {
       await page.goto('/')
       const nav = page.getByRole('navigation', { name: 'Primary' })
@@ -90,13 +89,13 @@ test.describe('mobile nav', () => {
     await expect(page.getByRole('button', { name: 'Close menu' })).toBeVisible()
   })
 
-  for (const link of [...topLevelLinks, ...servicesLinks]) {
+  for (const link of [...topLevelRoutes, ...servicesRoutes]) {
     test(`"${link.name}" navigates to ${link.path} from the mobile menu`, async ({ page }) => {
       await page.goto('/')
       await page.getByRole('button', { name: 'Open menu' }).click()
       const nav = page.getByRole('navigation', { name: 'Primary' })
 
-      if (servicesLinks.includes(link)) {
+      if (servicesRoutes.includes(link)) {
         await nav.getByText('Services', { exact: true }).click()
       }
       await nav.getByRole('link', { name: link.name, exact: true }).click()
