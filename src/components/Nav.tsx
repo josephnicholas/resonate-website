@@ -1,5 +1,5 @@
 import { Link, useRouterState } from '@tanstack/react-router'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import logo from '../assets/logo.png'
 import { routesInGroup, SITE_NAME, type SiteRoute } from '../site/routes'
 
@@ -28,7 +28,7 @@ const inactiveLinkProps = {
   className: inactiveColorClassName,
 }
 
-function NavLink({ item }: { item: SiteRoute }) {
+function NavLink({ item, onNavigate }: { item: SiteRoute; onNavigate: () => void }) {
   return (
     <Link
       to={item.path}
@@ -36,6 +36,7 @@ function NavLink({ item }: { item: SiteRoute }) {
       className={linkClassName}
       activeProps={activeLinkProps}
       inactiveProps={inactiveLinkProps}
+      onClick={onNavigate}
     >
       {item.label}
     </Link>
@@ -44,13 +45,21 @@ function NavLink({ item }: { item: SiteRoute }) {
 
 export function Nav() {
   const [mobileOpen, setMobileOpen] = useState(false)
+  const servicesDropdown = useRef<HTMLDetailsElement>(null)
   const pathname = useRouterState({ select: (state) => state.location.pathname })
   const isServicesActive = pathname.startsWith('/services')
+
+  // The nav lives in the root layout, so it survives navigation: without this,
+  // the mobile menu and the Services dropdown would stay open over the new page.
+  const closeMenus = () => {
+    setMobileOpen(false)
+    if (servicesDropdown.current) servicesDropdown.current.open = false
+  }
 
   return (
     <header className="bg-primary-100">
       <div className="flex w-full flex-wrap items-center justify-between gap-x-8 px-6 py-12 md:px-12">
-        <Link to="/" className="flex shrink-0 items-center">
+        <Link to="/" className="flex shrink-0 items-center" onClick={closeMenus}>
           <img src={logo} alt={SITE_NAME} className="h-12 w-auto sm:h-16 xl:h-18" />
         </Link>
         <button
@@ -78,12 +87,12 @@ export function Nav() {
           <ul className="flex flex-col xl:flex-row xl:items-center">
             {primaryLinks.map((link) => (
               <li key={link.path}>
-                <NavLink item={link} />
+                <NavLink item={link} onNavigate={closeMenus} />
               </li>
             ))}
 
             <li className="relative">
-              <details className="group [&::details-content]:block">
+              <details ref={servicesDropdown} className="group [&::details-content]:block">
                 <summary
                   className={`${linkClassName} cursor-pointer list-none [&::-webkit-details-marker]:hidden ${
                     isServicesActive ? activeColorClassName : inactiveColorClassName
@@ -95,7 +104,7 @@ export function Nav() {
                 <ul className="bg-primary-50 xl:absolute xl:left-0 xl:top-full xl:z-10 xl:min-w-max xl:rounded-b xl:shadow-lg">
                   {servicesLinks.map((link) => (
                     <li key={link.path}>
-                      <NavLink item={link} />
+                      <NavLink item={link} onNavigate={closeMenus} />
                     </li>
                   ))}
                 </ul>
@@ -104,7 +113,7 @@ export function Nav() {
 
             {trailingLinks.map((link) => (
               <li key={link.path}>
-                <NavLink item={link} />
+                <NavLink item={link} onNavigate={closeMenus} />
               </li>
             ))}
           </ul>

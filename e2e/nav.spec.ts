@@ -72,6 +72,16 @@ test.describe('desktop nav', () => {
     })
   }
 
+  test('Services dropdown closes after navigating from it', async ({ page }) => {
+    await page.goto('/')
+    const nav = page.getByRole('navigation', { name: 'Primary' })
+    await nav.getByText('Services', { exact: true }).click()
+    await nav.getByRole('link', { name: 'Group Therapy', exact: true }).click()
+
+    await expect(page).toHaveURL('/services/group-therapy')
+    await expect(nav.getByRole('link', { name: 'Group Therapy', exact: true })).toBeHidden()
+  })
+
   test('Services summary is marked current while on any services route', async ({ page }) => {
     await page.goto('/services/group-therapy')
     const nav = page.getByRole('navigation', { name: 'Primary' })
@@ -92,6 +102,17 @@ test.describe('mobile nav', () => {
     await page.getByRole('button', { name: 'Open menu' }).click()
     await expect(menu).toBeVisible()
     await expect(page.getByRole('button', { name: 'Close menu' })).toBeVisible()
+  })
+
+  test('menu closes after navigating from it', async ({ page }) => {
+    await page.goto('/')
+    await page.getByRole('button', { name: 'Open menu' }).click()
+    const menu = page.getByRole('navigation', { name: 'Primary' })
+    await menu.getByRole('link', { name: 'About Us', exact: true }).click()
+
+    await expect(page).toHaveURL('/about')
+    await expect(menu).toBeHidden()
+    await expect(page.getByRole('button', { name: 'Open menu' })).toBeVisible()
   })
 
   for (const link of siteRoutes) {
