@@ -1,5 +1,10 @@
-import { createFileRoute, Link } from '@tanstack/react-router'
-import { DraftNotice } from '../../components/DraftNotice'
+import { createFileRoute } from '@tanstack/react-router'
+import { Band } from '../../components/Band'
+import { CtaLink } from '../../components/CtaLink'
+import { PageIntro } from '../../components/PageIntro'
+import { PointList } from '../../components/PointList'
+import { Section } from '../../components/Section'
+import { SectionHeading } from '../../components/SectionHeading'
 
 export const Route = createFileRoute('/services/individual-therapy')({
   component: IndividualTherapyPage,
@@ -15,57 +20,36 @@ const expectations = [
 function IndividualTherapyPage() {
   return (
     <main>
-      <section className="mx-auto max-w-3xl px-4 py-12 text-center">
-        <h1 className="font-heading text-3xl font-semibold sm:text-4xl">Individual Therapy</h1>
+      <PageIntro title="Individual Therapy" draft>
+        Individual Therapy is Resonate&rsquo;s one-on-one music therapy service &mdash; sessions between a
+        single client and a credentialed music therapist, built around that client&rsquo;s specific needs
+        and goals. It&rsquo;s one of two formats we offer for our core clinical service; the other is Group
+        Therapy.
+      </PageIntro>
 
-        <DraftNotice />
+      <Section align="left">
+        <SectionHeading>What to Expect</SectionHeading>
+        <PointList points={expectations} />
+      </Section>
 
-        <p className="mt-6 font-body text-lg leading-relaxed">
-          Individual Therapy is Resonate&rsquo;s one-on-one music therapy service &mdash; sessions between a
-          single client and a credentialed music therapist, built around that client&rsquo;s specific needs
-          and goals. It&rsquo;s one of two formats we offer for our core clinical service; the other is Group
-          Therapy.
+      <Band>
+        <SectionHeading>Individual Therapy vs. Group Therapy</SectionHeading>
+        <p>
+          Individual Therapy and Group Therapy are both music therapy &mdash; delivered by a credentialed
+          professional, working toward each client&rsquo;s specific goals. The difference is format:
+          Individual Therapy is one-on-one, while Group Therapy brings together at least three
+          neurodivergent children at a time with a focus on social skills. Some clients benefit from one,
+          some from the other, and some from both.
         </p>
-      </section>
+      </Band>
 
-      <section className="mx-auto max-w-3xl px-4 py-12">
-        <h2 className="text-center font-heading text-2xl font-semibold sm:text-3xl">What to Expect</h2>
-        <ul className="mx-auto mt-8 grid max-w-2xl gap-4 text-left">
-          {expectations.map((point) => (
-            <li key={point} className="rounded-lg bg-neutral-100 p-4 font-body text-sm leading-relaxed shadow-md">
-              {point}
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      <section className="bg-secondary-100 px-4 py-12 text-center">
-        <div className="mx-auto max-w-3xl">
-          <h2 className="font-heading text-2xl font-semibold sm:text-3xl">Individual Therapy vs. Group Therapy</h2>
-          <p className="mt-4 font-body text-lg leading-relaxed">
-            Individual Therapy and Group Therapy are both music therapy &mdash; delivered by a credentialed
-            professional, working toward each client&rsquo;s specific goals. The difference is format:
-            Individual Therapy is one-on-one, while Group Therapy brings together at least three
-            neurodivergent children at a time with a focus on social skills. Some clients benefit from one,
-            some from the other, and some from both.
-          </p>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-3xl px-4 py-12 text-center">
-        <h2 className="font-heading text-2xl font-semibold sm:text-3xl">Ready to Learn More</h2>
-        <p className="mt-4 font-body text-lg leading-relaxed">
+      <Section>
+        <SectionHeading>Ready to Learn More</SectionHeading>
+        <p>
           Individual Therapy is one part of a broader set of services for people of all ages and abilities.
         </p>
-        <p className="mt-6">
-          <Link
-            to="/services"
-            className="font-heading font-medium text-primary-600 underline hover:text-accent-600"
-          >
-            View our services
-          </Link>
-        </p>
-      </section>
+        <CtaLink to="/services">View our services</CtaLink>
+      </Section>
     </main>
   )
 }

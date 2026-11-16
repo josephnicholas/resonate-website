@@ -115,6 +115,16 @@ therefore new — investigate it rather than assuming it is pre-existing.
   component in `src/components/` is invisible to the sync until added to both.
   A renamed or deleted one leaves an orphan in the uploaded project — the
   re-sync diff's `upload.deletePaths` handles it only if the anchor is intact.
+- **The page skeleton blocks are not synced yet.** `PageIntro`, `Section`,
+  `Band`, `SectionHeading`, `PointList`, `CardGrid`/`Card` and `CtaLink` were
+  added to `src/components/` on 2026-11-16 and are deliberately absent from
+  `entry.ts` and `config.json`. They are the "house patterns worth copying" that
+  `conventions.md` still describes as raw utility classes; when they are synced,
+  rewrite that paragraph and the "idiomatic page" example to use them.
+  `AmtaDefinition` is now built on `Band` and `SectionHeading` (same output, but
+  its attribution is a `<figcaption>` inside a `<figure>`, no longer a `<p>`).
+  `Section` and `Band` use arbitrary variants (`[&>p]:…`), which the
+  pre-compiled `styles.css` only carries if the Tailwind build scans them.
 - **`.design-sync/docs/*.md` describe behaviour prose-style** (autoplay delay,
   reduced-motion, the `<details>` dropdown, `role="note"`). These were read off
   the component sources on 2026-08-09; they will not fail loudly if the

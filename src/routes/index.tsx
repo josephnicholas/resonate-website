@@ -1,5 +1,7 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { AmtaDefinition } from '../components/AmtaDefinition'
+import { Card, CardGrid } from '../components/CardGrid'
+import { PageIntro } from '../components/PageIntro'
 import servicesBg from '../assets/services-bg.jpg'
 import ttkBg from '../assets/kids-background-ttk.jpg'
 import tempoTunesLogo from '../assets/tempokids.png'
@@ -49,17 +51,12 @@ function HomePage() {
         <img src={logo} alt="" className="relative z-10 mx-auto w-6/12" />
       </section>
 
-      <section className="mx-auto max-w-3xl px-4 py-12 text-center">
-        <h1 className="font-heading text-3xl font-semibold sm:text-4xl">
-          Music Therapy and Child Enrichment Services
-        </h1>
-        <p className="mt-4 font-body text-lg leading-relaxed">
-          Resonate Music Therapy Studio is the only music therapy studio in the Visayas, located in Dumaguete
-          City, Negros Oriental. We offer specialized music therapy services to individuals and groups of all
-          ages and abilities, and we&rsquo;re committed to providing inclusive, welcoming support to everyone who
-          walks through our doors.
-        </p>
-      </section>
+      <PageIntro title="Music Therapy and Child Enrichment Services">
+        Resonate Music Therapy Studio is the only music therapy studio in the Visayas, located in Dumaguete
+        City, Negros Oriental. We offer specialized music therapy services to individuals and groups of all
+        ages and abilities, and we&rsquo;re committed to providing inclusive, welcoming support to everyone who
+        walks through our doors.
+      </PageIntro>
 
       <AmtaDefinition />
 
@@ -71,24 +68,18 @@ function HomePage() {
         <div className="relative mx-auto max-w-6xl">
           <h2 className="text-center font-heading text-2xl font-semibold text-white sm:text-3xl">Our Services</h2>
 
-          <ul className="mt-8 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
+          <CardGrid columns={4}>
             {services.map((service) => (
-              <li key={service.to} className="rounded-lg bg-neutral-50 p-6 shadow-md">
-                <h3 className="font-heading text-lg font-semibold">
-                  <Link to={service.to}>{service.title}</Link>
-                </h3>
-                <p className="mt-2 font-body text-sm leading-relaxed text-neutral-700">{service.description}</p>
-              </li>
+              <Card key={service.to} title={service.title} to={service.to}>
+                {service.description}
+              </Card>
             ))}
 
-            <li className="rounded-lg bg-neutral-50 p-6 shadow-md">
-              <h3 className="font-heading text-lg font-semibold">Company Team Building Activities</h3>
-              <p className="mt-2 font-body text-sm leading-relaxed text-neutral-700">
-                Group activities for corporate clients aimed at improving team communication, collaboration, and
-                morale.
-              </p>
-            </li>
-          </ul>
+            <Card title="Company Team Building Activities">
+              Group activities for corporate clients aimed at improving team communication, collaboration, and
+              morale.
+            </Card>
+          </CardGrid>
 
           <p className="mt-8 text-center">
             <Link to="/services" className="font-heading font-medium text-white underline hover:text-accent-200">
