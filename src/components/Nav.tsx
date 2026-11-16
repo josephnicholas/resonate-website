@@ -17,7 +17,7 @@ const trailingLinks = routesInGroup('trailing')
 // the active one leaves both `text-*` utilities on the element, and then the
 // stylesheet's emission order decides which wins — not the authoring order.
 const linkClassName = 'block px-3 py-2 font-heading font-semibold text-xl'
-const activeColorClassName = 'text-accent-700'
+const activeColorClassName = 'text-accent-700 underline underline-offset-4'
 const inactiveColorClassName = 'text-primary-700 hover:text-secondary-800'
 
 const activeLinkProps = {

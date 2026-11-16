@@ -39,14 +39,19 @@ test.describe('desktop nav', () => {
     await page.goto('/about')
     const nav = page.getByRole('navigation', { name: 'Primary' })
 
-    const activeColor = await nav
-      .getByRole('link', { name: 'About Us', exact: true })
-      .evaluate((el) => el.ownerDocument.defaultView!.getComputedStyle(el).color)
+    const activeLink = nav.getByRole('link', { name: 'About Us', exact: true })
+    const activeColor = await activeLink.evaluate(
+      (el) => el.ownerDocument.defaultView!.getComputedStyle(el).color,
+    )
+    const activeTextDecoration = await activeLink.evaluate(
+      (el) => el.ownerDocument.defaultView!.getComputedStyle(el).textDecorationLine,
+    )
     const inactiveColor = await nav
       .getByRole('link', { name: 'Home', exact: true })
       .evaluate((el) => el.ownerDocument.defaultView!.getComputedStyle(el).color)
 
     expect(activeColor).not.toBe(inactiveColor)
+    expect(activeTextDecoration).toBe('underline')
   })
 
   test('Services opens a dropdown', async ({ page }) => {
