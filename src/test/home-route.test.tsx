@@ -1,28 +1,20 @@
-import { render, screen, within } from '@testing-library/react'
-import { RouterProvider, createRouter, createMemoryHistory } from '@tanstack/react-router'
 import { describe, expect, it } from 'vitest'
-import { routeTree } from '../routeTree.gen'
+import { renderRoute } from './render-route'
 
 describe('/ route', () => {
   it('renders the home page', async () => {
-    const router = createRouter({
-      routeTree,
-      history: createMemoryHistory({ initialEntries: ['/'] }),
-    })
-    render(<RouterProvider router={router} />)
-
-    const main = await screen.findByRole('main')
+    const page = await renderRoute('/')
 
     expect(
-      within(main).getByRole('heading', { name: 'Music Therapy and Child Enrichment Services' }),
+      page.getByRole('heading', { name: 'Music Therapy and Child Enrichment Services' }),
     ).toBeInTheDocument()
-    expect(within(main).getByRole('heading', { name: 'What is Music Therapy' })).toBeInTheDocument()
-    expect(within(main).getByText(/American Music Therapy Association/)).toBeInTheDocument()
-    expect(within(main).getByRole('heading', { name: 'Our Services' })).toBeInTheDocument()
-    expect(within(main).getByRole('link', { name: 'Individual Therapy' })).toBeInTheDocument()
-    expect(within(main).getByRole('link', { name: 'Group Therapy' })).toBeInTheDocument()
-    expect(within(main).getByRole('link', { name: 'Adaptive Music Lessons' })).toBeInTheDocument()
-    expect(within(main).getByText('Company Team Building Activities')).toBeInTheDocument()
-    expect(within(main).getByAltText('Tempo Tunes')).toBeInTheDocument()
+    expect(page.getByRole('heading', { name: 'What is Music Therapy' })).toBeInTheDocument()
+    expect(page.getByText(/American Music Therapy Association/)).toBeInTheDocument()
+    expect(page.getByRole('heading', { name: 'Our Services' })).toBeInTheDocument()
+    expect(page.getByRole('link', { name: 'Individual Therapy' })).toBeInTheDocument()
+    expect(page.getByRole('link', { name: 'Group Therapy' })).toBeInTheDocument()
+    expect(page.getByRole('link', { name: 'Adaptive Music Lessons' })).toBeInTheDocument()
+    expect(page.getByText('Company Team Building Activities')).toBeInTheDocument()
+    expect(page.getByAltText('Tempo Tunes')).toBeInTheDocument()
   })
 })

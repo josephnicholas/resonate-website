@@ -1,29 +1,21 @@
-import { render, screen, within } from '@testing-library/react'
-import { RouterProvider, createRouter, createMemoryHistory } from '@tanstack/react-router'
 import { describe, expect, it } from 'vitest'
-import { routeTree } from '../routeTree.gen'
+import { renderRoute } from './render-route'
 
 describe('/contact route', () => {
   it('renders the contact page', async () => {
-    const router = createRouter({
-      routeTree,
-      history: createMemoryHistory({ initialEntries: ['/contact'] }),
-    })
-    render(<RouterProvider router={router} />)
+    const page = await renderRoute('/contact')
 
-    const main = await screen.findByRole('main')
+    expect(page.getByRole('heading', { name: 'Contact', level: 1 })).toBeInTheDocument()
+    expect(page.getByRole('note')).toBeInTheDocument()
+    expect(page.getByRole('heading', { name: 'Get in Touch', level: 2 })).toBeInTheDocument()
 
-    expect(within(main).getByRole('heading', { name: 'Contact', level: 1 })).toBeInTheDocument()
-    expect(within(main).getByText(/first draft/i)).toBeInTheDocument()
-    expect(within(main).getByRole('heading', { name: 'Get in Touch', level: 2 })).toBeInTheDocument()
-
-    const instagramLink = within(main).getByRole('link', { name: 'Instagram' })
+    const instagramLink = page.getByRole('link', { name: 'Instagram' })
     expect(instagramLink).toHaveAttribute('href', 'https://www.instagram.com/resonatemusictherapystudio')
 
-    const facebookLink = within(main).getByRole('link', { name: 'Facebook' })
+    const facebookLink = page.getByRole('link', { name: 'Facebook' })
     expect(facebookLink).toHaveAttribute('href', 'https://www.facebook.com/resonatemtstudio')
 
-    expect(within(main).getByRole('heading', { name: 'About Our Contact Form', level: 2 })).toBeInTheDocument()
-    expect(within(main).getByText(/don.t have a working contact form/i)).toBeInTheDocument()
+    expect(page.getByRole('heading', { name: 'About Our Contact Form', level: 2 })).toBeInTheDocument()
+    expect(page.getByText(/don.t have a working contact form/i)).toBeInTheDocument()
   })
 })
