@@ -20,23 +20,38 @@ pnpm lint          # ESLint
 pnpm build         # production build to dist/ (typecheck + vite build + 404.html SPA fallback copy)
 ```
 
+Running a subset:
+
+```bash
+pnpm test src/test/about-route.test.tsx    # one Vitest file
+pnpm test -t "renders the about page"      # Vitest tests matching a name
+pnpm test:e2e e2e/nav.spec.ts              # one Playwright spec
+pnpm test:e2e -g "color-contrast"          # Playwright tests matching a title
+```
+
+Playwright serves a production build on port 4173 and, outside CI, reuses whatever is already listening there (`reuseExistingServer`). A leftover `pnpm preview` therefore means the specs run against a stale build — stop it before trusting an e2e result.
+
 Validation is manual beyond the automated suites: check rendering at multiple viewport widths before considering a UI change complete.
 
 ## Architecture
 
 - `src/routes/` — TanStack Router file-based routes. File path maps directly to URL path (e.g. `routes/services/individual-therapy.tsx` → `/services/individual-therapy`). `src/routes/__root.tsx` is the shared root layout (`<Outlet />`). Running `pnpm dev` or `pnpm build` regenerates `src/routeTree.gen.ts`, overwriting it in place — it's committed (so a fresh checkout can typecheck before anything has run Vite once) but never hand-edited.
+- **Adding, renaming, or removing a route touches three places that are kept in step by hand**: the file in `src/routes/`, the link lists in `src/components/Nav.tsx`, and `e2e/routes.ts` (nav text, `h1`, and path per route). `e2e/nav.spec.ts` asserts they agree; the deep-link, link-hygiene, and contrast specs iterate `e2e/routes.ts`, so a route missing from it is silently untested.
+- `src/components/` — the shared pieces: `Nav` and `Footer` (rendered once by `__root.tsx`), plus `AmtaDefinition`, `DraftNotice`, and `ImagePlaceholder`. Each route component renders its own `<main>`; the root layout does not. `DraftNotice` and `ImagePlaceholder` mark copy and photos still awaiting the studio owner's review/real assets. A draft page is `<PageIntro draft>`, and its route test asserts the notice is there, so signing a page off means dropping the `draft` prop and the matching line in its test in `src/test/`. `ImagePlaceholder` is not used by any route yet. The page skeleton lives here too, as building blocks that take copy as children: `PageIntro` (`h1`, lead paragraph, and the draft notice via its `draft` prop), `Section` (plain ground; `align="left"`, `wide`), `Band` (full-bleed tinted), `SectionHeading` (`h2`), `PointList`, `CardGrid`/`Card`, and `CtaLink`. Build pages from these rather than hand-writing section/heading class strings — they own column width, vertical rhythm, the type scale, and the contrast-safe colour pairs. `Section` and `Band` style their direct `<p>` children as body copy (`prose.ts`), so routes write plain `<p>`. Home's photo bands are the one deliberate exception and stay inline in `src/routes/index.tsx`.
 - `src/assets/` — logos, social SVGs, and content photos, imported as ES modules (not served from `public/`), so a missing/renamed file is a build-time error. Two filenames contain spaces (`therapy1 (Medium).jpg`, `therapy2 (Medium).jpg`) — importing them as modules removes the need for URL-encoding that the old static site required.
 - `public/` — files served verbatim at the build root: `favicon.ico`, `CNAME` (custom domain pin — do not delete/rename), `tempokids.jpg` (Open Graph preview image; `<meta>` tags aren't processed by Vite's HTML asset pipeline, so this needs a real static file, duplicated from `src/assets/tempokids.jpg`).
-- `src/test/` — Vitest/RTL setup and tests colocated outside `src/routes/` (the router's file-based generator only expects route files there).
-- `e2e/` — Playwright specs, plus `routes.ts`: the shared list of the site's nine routes that the integration specs iterate.
+- `src/test/` — Vitest/RTL setup and tests colocated outside `src/routes/` (the router's file-based generator only expects route files there). Route tests call `renderRoute('/path')` from `render-route.tsx`, which mounts the real `routeTree` on a memory router (so the Nav/Footer shell renders too) and returns queries scoped to the page's `<main>`. They are the only place per-page content (headings, links) is asserted; a draft page is asserted with `getByRole('note')`, and only `draft-notice.test.tsx` pins the notice's wording. `setup.ts` stubs `matchMedia`, `IntersectionObserver`, and `ResizeObserver`, which jsdom lacks.
+- `e2e/` — Playwright specs for what needs a real browser across the whole site (`nav`, `deep-links`, `link-hygiene`, `accessibility`), plus `routes.ts`: the shared list of the site's nine routes that those specs iterate. There are deliberately no per-page content specs here — page content belongs to the Vitest route tests.
 - `scripts/copy-404.mjs` — copies the built `index.html` to `dist/404.html` after `vite build`, since GitHub Pages has no native client-side routing and needs this SPA fallback for direct loads of non-root routes.
+- `.design-sync/` — inputs for importing the shared components into claude.ai/design; not part of the site build. A new component in `src/components/` is not synced until it is added to `.design-sync/entry.ts` and `config.json`. Read `.design-sync/NOTES.md` before touching it.
 
 ## Conventions
 
 - TypeScript strict mode is on in both `tsconfig.app.json` and `tsconfig.node.json`.
 - ESLint (flat config, `eslint.config.js`) — not oxlint, despite that being `create-vite`'s current default; this project standardizes on ESLint. `react-refresh/only-export-components` is disabled for `src/routes/**` since route files intentionally export only a `Route` object, not a component.
 - Route files follow the TanStack Router convention: `export const Route = createFileRoute('/path')({ component: ... })`, with the actual component function defined (not exported) below it.
-- Tailwind v4 is the styling system; brand tokens (`primary`/`secondary`/`accent`/`neutral` scales, `font-heading`/`font-body`) are defined in `src/index.css`. Style with those tokens rather than stock Tailwind palettes or ad hoc CSS — `e2e/accessibility.spec.ts` enforces WCAG AA contrast on every route, and off-palette colours are how that gets broken.
+- Tailwind v4 is the styling system; brand tokens (`primary`/`secondary`/`accent`/`neutral` scales, `font-heading`/`font-body`) are defined in `src/index.css`. Style with those tokens rather than stock Tailwind palettes or ad hoc CSS — `e2e/accessibility.spec.ts` enforces WCAG AA contrast on every route, and off-palette colours are how that gets broken. The page ground is warm `neutral-50`, not `bg-white`.
+- `AGENTS.md` and `.github/copilot-instructions.md` carry the same guidance as this file for other tools; when a change here alters commands, architecture, or conventions, mirror it there.
 
 ## Deployment
 
