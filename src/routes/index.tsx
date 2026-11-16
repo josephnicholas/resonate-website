@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { AmtaDefinition } from '../components/AmtaDefinition'
-import { Card, CardGrid } from '../components/CardGrid'
 import { PageIntro } from '../components/PageIntro'
+import { ServiceCards } from '../components/ServiceCards'
 import servicesBg from '../assets/services-bg.jpg'
 import ttkBg from '../assets/kids-background-ttk.jpg'
 import tempoTunesLogo from '../assets/tempokids.png'
@@ -10,25 +10,6 @@ import logo from '../assets/logo.png'
 export const Route = createFileRoute('/')({
   component: HomePage,
 })
-
-const services = [
-  {
-    title: 'Individual Therapy',
-    description: "One-on-one music therapy sessions tailored to a single client's specific needs and goals.",
-    to: '/services/individual-therapy',
-  },
-  {
-    title: 'Group Therapy',
-    description:
-      'Music therapy sessions for neurodivergent children focused on improving social skills, run with at least three clients per session.',
-    to: '/services/group-therapy',
-  },
-  {
-    title: 'Adaptive Music Lessons',
-    description: "Voice, piano, and guitar lessons adapted to an individual's abilities and needs.",
-    to: '/services/adaptive-music-lessons',
-  },
-] as const
 
 const tempoTunesPoints = [
   'Learning and experiencing music boosts the brain and can positively impact a child’s development.',
@@ -68,18 +49,7 @@ function HomePage() {
         <div className="relative mx-auto max-w-6xl">
           <h2 className="text-center font-heading text-2xl font-semibold text-white sm:text-3xl">Our Services</h2>
 
-          <CardGrid columns={4}>
-            {services.map((service) => (
-              <Card key={service.to} title={service.title} to={service.to}>
-                {service.description}
-              </Card>
-            ))}
-
-            <Card title="Company Team Building Activities">
-              Group activities for corporate clients aimed at improving team communication, collaboration, and
-              morale.
-            </Card>
-          </CardGrid>
+          <ServiceCards />
 
           <p className="mt-8 text-center">
             <Link to="/services" className="font-heading font-medium text-white underline hover:text-accent-200">

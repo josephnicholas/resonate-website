@@ -1,33 +1,14 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { Band } from '../../components/Band'
-import { Card, CardGrid } from '../../components/CardGrid'
 import { CtaLink } from '../../components/CtaLink'
 import { PageIntro } from '../../components/PageIntro'
 import { Section } from '../../components/Section'
 import { SectionHeading } from '../../components/SectionHeading'
+import { ServiceCards } from '../../components/ServiceCards'
 
 export const Route = createFileRoute('/services/')({
   component: ServicesPage,
 })
-
-const offerings = [
-  {
-    title: 'Individual Therapy',
-    description: "One-on-one music therapy sessions tailored to a single client's specific needs and goals.",
-    to: '/services/individual-therapy',
-  },
-  {
-    title: 'Group Therapy',
-    description:
-      'Music therapy sessions for neurodivergent children focused on improving social skills, run with at least three clients per session.',
-    to: '/services/group-therapy',
-  },
-  {
-    title: 'Adaptive Music Lessons',
-    description: "Voice, piano, and guitar lessons adapted to an individual's abilities and needs.",
-    to: '/services/adaptive-music-lessons',
-  },
-] as const
 
 function ServicesPage() {
   return (
@@ -41,18 +22,7 @@ function ServicesPage() {
       <Section align="left" wide>
         <SectionHeading>What We Offer</SectionHeading>
 
-        <CardGrid columns={4}>
-          {offerings.map((offering) => (
-            <Card key={offering.to} title={offering.title} to={offering.to}>
-              {offering.description}
-            </Card>
-          ))}
-
-          <Card title="Company Team Building Activities">
-            Group activities for corporate clients aimed at improving team communication, collaboration, and
-            morale.
-          </Card>
-        </CardGrid>
+        <ServiceCards />
       </Section>
 
       <Band>
