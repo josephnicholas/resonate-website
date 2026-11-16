@@ -1,6 +1,6 @@
 # Resonate Music Therapy Studio — building with this design system
 
-These are the components of `resonatemusictherapystudio.com`: a warm, calm marketing site for a music therapy practice. Six components, styled with Tailwind v4 utilities against a brand token theme.
+These are the components of `resonatemusictherapystudio.com`: a warm, calm marketing site for a music therapy practice. Five components, styled with Tailwind v4 utilities against a brand token theme.
 
 ## Wrapping and setup
 
@@ -16,7 +16,7 @@ const { PreviewRouterProvider, Nav, Footer } = window.ResonateDS;
 </PreviewRouterProvider>
 ```
 
-It carries the site's nine real routes (`/`, `/music-therapy`, `/who-we-serve`, `/services`, `/services/individual-therapy`, `/services/group-therapy`, `/services/adaptive-music-lessons`, `/about`, `/contact`), so nav links resolve and the active link highlights. It renders its children directly — it does not route the page. The other five components need no provider, but wrapping the whole tree is always safe.
+It carries the site's nine real routes (`/`, `/music-therapy`, `/who-we-serve`, `/services`, `/services/individual-therapy`, `/services/group-therapy`, `/services/adaptive-music-lessons`, `/about`, `/contact`), so nav links resolve and the active link highlights. It renders its children directly — it does not route the page. The other four components need no provider, but wrapping the whole tree is always safe.
 
 ## The styling idiom
 

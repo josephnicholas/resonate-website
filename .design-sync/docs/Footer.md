@@ -23,4 +23,4 @@ The year is computed at render time from the current date — there is nothing t
 ## Composition notes
 
 - Full-bleed `bg-primary-600` with its own padding, so place it flush against the bottom of the page rather than inside a padded container.
-- It pairs with `Nav`: same band colour, same white text, bracketing the page.
+- It brackets the page with `Nav`, but they are not the same band: `Nav` is light (`bg-primary-100`, navy text) and the footer is dark (`bg-primary-600`, white text).

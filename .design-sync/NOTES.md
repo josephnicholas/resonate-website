@@ -8,7 +8,7 @@ design agent reads is `conventions.md`.
 
 - **It is not a published package.** No `main`/`module`/`exports`, no library
   `dist/`. `.design-sync/entry.ts` is a hand-written barrel that re-exports the
-  six shared components; `cfg.entry` points at it. Without an explicit `entry`
+  five synced components; `cfg.entry` points at it. Without an explicit `entry`
   the converter looks for `<node-modules>/resonate-website/package.json` and dies
   with ENOENT.
 - **Adding a component to `src/components/` does not sync it.** Add it to
@@ -24,8 +24,10 @@ design agent reads is `conventions.md`.
 
 ## Toolchain
 
-- **This machine has no `node` and no `npm` on PATH — only `bun`** (1.3.11,
-  reports `process.version v24`). Everything was run through a shim:
+- **At the first sync this machine had no `node` and no `npm` on PATH — only
+  `bun`** (1.3.11, reports `process.version v24`). `node`, `npm` and `pnpm` are
+  on PATH as of 2026-11-16, so the shim below should no longer be needed; the
+  sync has not been re-run under real node to confirm. What was done then:
   ```sh
   mkdir -p /tmp/ds-bin && printf '#!/bin/sh\nexec bun "$@"\n' > /tmp/ds-bin/node
   chmod +x /tmp/ds-bin/node && export PATH=/tmp/ds-bin:$PATH
@@ -132,9 +134,10 @@ therefore new — investigate it rather than assuming it is pre-existing.
   unverified. `preview-provider.tsx` still keeps its own `ROUTES` list of the
   nine paths; it could read the registry instead once a sync confirms the
   import resolves.
-- **`.design-sync/docs/*.md` describe behaviour prose-style** (autoplay delay,
-  reduced-motion, the `<details>` dropdown, `role="note"`). These were read off
-  the component sources on 2026-08-09; they will not fail loudly if the
+- **`.design-sync/docs/*.md` describe behaviour prose-style** (the
+  `<details>` dropdown, the `xl` breakpoint, band colours, `role="note"`). These
+  were read off the component sources on 2026-08-09 and corrected against them
+  on 2026-11-16; they will not fail loudly if the
   implementation changes.
 - **The safelist in `ds.css` is a guess at what the design agent will reach for.**
   If designs come back with unstyled gaps, the fix is almost always a missing

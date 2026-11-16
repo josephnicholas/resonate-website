@@ -10,7 +10,7 @@ Drop it between page sections; it brings its own heading, quotation, attribution
 
 ```jsx
 <main>
-  <Carousel slides={slides} label="Photos from Resonate Music Therapy Studio" />
+  <section>{/* page intro */}</section>
   <AmtaDefinition />
   {/* … */}
 </main>
