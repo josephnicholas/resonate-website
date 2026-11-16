@@ -3,6 +3,7 @@ import { Band } from '../components/Band'
 import { PageIntro } from '../components/PageIntro'
 import { Section } from '../components/Section'
 import { SectionHeading } from '../components/SectionHeading'
+import { siteRoute } from '../site/routes'
 import instagramIcon from '../assets/instagram.svg'
 import facebookIcon from '../assets/facebook.svg'
 
@@ -26,7 +27,7 @@ const socialLinks = [
 function ContactPage() {
   return (
     <main>
-      <PageIntro title="Contact" draft>
+      <PageIntro title={siteRoute('/contact').heading} draft>
         Reach out to Resonate Music Therapy Studio through Instagram or Facebook &mdash; that&rsquo;s where
         we&rsquo;re easiest to find right now.
       </PageIntro>

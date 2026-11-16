@@ -5,6 +5,7 @@ import { PageIntro } from '../../components/PageIntro'
 import { PointList } from '../../components/PointList'
 import { Section } from '../../components/Section'
 import { SectionHeading } from '../../components/SectionHeading'
+import { siteRoute } from '../../site/routes'
 
 export const Route = createFileRoute('/services/individual-therapy')({
   component: IndividualTherapyPage,
@@ -20,7 +21,7 @@ const expectations = [
 function IndividualTherapyPage() {
   return (
     <main>
-      <PageIntro title="Individual Therapy" draft>
+      <PageIntro title={siteRoute('/services/individual-therapy').heading} draft>
         Individual Therapy is Resonate&rsquo;s one-on-one music therapy service &mdash; sessions between a
         single client and a credentialed music therapist, built around that client&rsquo;s specific needs
         and goals. It&rsquo;s one of two formats we offer for our core clinical service; the other is Group

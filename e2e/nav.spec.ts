@@ -1,12 +1,17 @@
 import { test, expect } from '@playwright/test'
-import { servicesRoutes, topLevelRoutes } from './routes.ts'
+import { routesInGroup, siteRoutes } from '../src/site/routes.ts'
+
+// The rendered nav puts the Services dropdown between the primary and trailing
+// links; the links outside it all behave the same way in these specs.
+const topLevelRoutes = [...routesInGroup('primary'), ...routesInGroup('trailing')]
+const servicesRoutes = routesInGroup('services')
 
 test.describe('desktop nav', () => {
   for (const link of topLevelRoutes) {
-    test(`"${link.name}" navigates to ${link.path}`, async ({ page }) => {
+    test(`"${link.label}" navigates to ${link.path}`, async ({ page }) => {
       await page.goto('/')
       const nav = page.getByRole('navigation', { name: 'Primary' })
-      await nav.getByRole('link', { name: link.name, exact: true }).click()
+      await nav.getByRole('link', { name: link.label, exact: true }).click()
 
       await expect(page).toHaveURL(link.path)
       await expect(page.getByRole('heading', { name: link.heading, exact: true })).toBeVisible()
@@ -51,16 +56,16 @@ test.describe('desktop nav', () => {
     await nav.getByText('Services', { exact: true }).click()
 
     for (const link of servicesRoutes) {
-      await expect(nav.getByRole('link', { name: link.name, exact: true })).toBeVisible()
+      await expect(nav.getByRole('link', { name: link.label, exact: true })).toBeVisible()
     }
   })
 
   for (const link of servicesRoutes) {
-    test(`Services dropdown "${link.name}" navigates to ${link.path}`, async ({ page }) => {
+    test(`Services dropdown "${link.label}" navigates to ${link.path}`, async ({ page }) => {
       await page.goto('/')
       const nav = page.getByRole('navigation', { name: 'Primary' })
       await nav.getByText('Services', { exact: true }).click()
-      await nav.getByRole('link', { name: link.name, exact: true }).click()
+      await nav.getByRole('link', { name: link.label, exact: true }).click()
 
       await expect(page).toHaveURL(link.path)
       await expect(page.getByRole('heading', { name: link.heading, exact: true })).toBeVisible()
@@ -89,16 +94,16 @@ test.describe('mobile nav', () => {
     await expect(page.getByRole('button', { name: 'Close menu' })).toBeVisible()
   })
 
-  for (const link of [...topLevelRoutes, ...servicesRoutes]) {
-    test(`"${link.name}" navigates to ${link.path} from the mobile menu`, async ({ page }) => {
+  for (const link of siteRoutes) {
+    test(`"${link.label}" navigates to ${link.path} from the mobile menu`, async ({ page }) => {
       await page.goto('/')
       await page.getByRole('button', { name: 'Open menu' }).click()
       const nav = page.getByRole('navigation', { name: 'Primary' })
 
-      if (servicesRoutes.includes(link)) {
+      if (link.group === 'services') {
         await nav.getByText('Services', { exact: true }).click()
       }
-      await nav.getByRole('link', { name: link.name, exact: true }).click()
+      await nav.getByRole('link', { name: link.label, exact: true }).click()
 
       await expect(page).toHaveURL(link.path)
       await expect(page.getByRole('heading', { name: link.heading, exact: true })).toBeVisible()

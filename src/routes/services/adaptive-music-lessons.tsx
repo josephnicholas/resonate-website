@@ -5,6 +5,7 @@ import { PageIntro } from '../../components/PageIntro'
 import { PointList } from '../../components/PointList'
 import { Section } from '../../components/Section'
 import { SectionHeading } from '../../components/SectionHeading'
+import { siteRoute } from '../../site/routes'
 
 export const Route = createFileRoute('/services/adaptive-music-lessons')({
   component: AdaptiveMusicLessonsPage,
@@ -20,7 +21,7 @@ const expectations = [
 function AdaptiveMusicLessonsPage() {
   return (
     <main>
-      <PageIntro title="Adaptive Music Lessons" draft>
+      <PageIntro title={siteRoute('/services/adaptive-music-lessons').heading} draft>
         Adaptive Music Lessons are Resonate&rsquo;s voice, piano, and guitar lessons, adapted to an
         individual&rsquo;s abilities and needs. Unlike our music therapy services, lessons are instructional
         rather than clinical &mdash; the goal is musical skill itself.

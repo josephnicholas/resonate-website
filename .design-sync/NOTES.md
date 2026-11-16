@@ -125,6 +125,13 @@ therefore new — investigate it rather than assuming it is pre-existing.
   its attribution is a `<figcaption>` inside a `<figure>`, no longer a `<p>`).
   `Section` and `Band` use arbitrary variants (`[&>p]:…`), which the
   pre-compiled `styles.css` only carries if the Tailwind build scans them.
+- **`Nav` now imports site data from outside `src/components/`.** Since
+  2026-11-16 it reads its links from `src/site/routes.ts` (which imports
+  `./services.ts` with an explicit `.ts` extension). The sync has not been
+  re-run since, so whether the converter's bundler follows that import is
+  unverified. `preview-provider.tsx` still keeps its own `ROUTES` list of the
+  nine paths; it could read the registry instead once a sync confirms the
+  import resolves.
 - **`.design-sync/docs/*.md` describe behaviour prose-style** (autoplay delay,
   reduced-motion, the `<details>` dropdown, `role="note"`). These were read off
   the component sources on 2026-08-09; they will not fail loudly if the

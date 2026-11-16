@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
-import { allRoutes } from './routes.ts'
+import { siteRoutes } from '../src/site/routes.ts'
 
-const knownPaths = new Set(allRoutes.map((route) => route.path))
+const knownPaths = new Set<string>(siteRoutes.map((route) => route.path))
 
 /**
  * Site-wide link hygiene, checked on every route rather than only the entry
@@ -9,7 +9,7 @@ const knownPaths = new Set(allRoutes.map((route) => route.path))
  * catch the in-content links — the CTAs at the bottom of each page — which no
  * other spec follows.
  */
-for (const route of allRoutes) {
+for (const route of siteRoutes) {
   test(`${route.path} has no placeholder links`, async ({ page }) => {
     await page.goto(route.path)
     await expect(page.getByRole('contentinfo')).toBeAttached()

@@ -1,8 +1,8 @@
 import { AxeBuilder } from '@axe-core/playwright'
 import { test, expect } from '@playwright/test'
-import { allRoutes } from './routes.ts'
+import { siteRoutes } from '../src/site/routes.ts'
 
-for (const { path: route } of allRoutes) {
+for (const { path: route } of siteRoutes) {
   test(`${route} has no WCAG AA color-contrast violations`, async ({ page }) => {
     await page.goto(route)
 

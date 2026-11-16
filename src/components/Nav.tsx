@@ -1,29 +1,11 @@
 import { Link, useRouterState } from '@tanstack/react-router'
 import { useState } from 'react'
 import logo from '../assets/logo.png'
+import { routesInGroup, SITE_NAME, type SiteRoute } from '../site/routes'
 
-const primaryLinks = [
-  { to: '/', label: 'Home' },
-  { to: '/music-therapy', label: 'Music Therapy' },
-  { to: '/who-we-serve', label: 'Who We Serve' },
-] as const
-
-const servicesLinks = [
-  { to: '/services', label: 'All Services' },
-  { to: '/services/individual-therapy', label: 'Individual Therapy' },
-  { to: '/services/group-therapy', label: 'Group Therapy' },
-  { to: '/services/adaptive-music-lessons', label: 'Adaptive Music Lessons' },
-] as const
-
-const trailingLinks = [
-  { to: '/about', label: 'About Us' },
-  { to: '/contact', label: 'Contact' },
-] as const
-
-type NavLinkItem =
-  | (typeof primaryLinks)[number]
-  | (typeof servicesLinks)[number]
-  | (typeof trailingLinks)[number]
+const primaryLinks = routesInGroup('primary')
+const servicesLinks = routesInGroup('services')
+const trailingLinks = routesInGroup('trailing')
 
 // Colours are pinned to the dark end of the brand scales: the nav sits on
 // `primary-100` (and the dropdown panel on `primary-50`), so anything lighter
@@ -46,10 +28,10 @@ const inactiveLinkProps = {
   className: inactiveColorClassName,
 }
 
-function NavLink({ item }: { item: NavLinkItem }) {
+function NavLink({ item }: { item: SiteRoute }) {
   return (
     <Link
-      to={item.to}
+      to={item.path}
       activeOptions={{ exact: true }}
       className={linkClassName}
       activeProps={activeLinkProps}
@@ -69,7 +51,7 @@ export function Nav() {
     <header className="bg-primary-100">
       <div className="flex w-full flex-wrap items-center justify-between gap-x-8 px-6 py-12 md:px-12">
         <Link to="/" className="flex shrink-0 items-center">
-          <img src={logo} alt="Resonate Music Therapy Studio" className="h-12 w-auto sm:h-16 xl:h-18" />
+          <img src={logo} alt={SITE_NAME} className="h-12 w-auto sm:h-16 xl:h-18" />
         </Link>
         <button
           type="button"
@@ -95,7 +77,7 @@ export function Nav() {
         >
           <ul className="flex flex-col xl:flex-row xl:items-center">
             {primaryLinks.map((link) => (
-              <li key={link.to}>
+              <li key={link.path}>
                 <NavLink item={link} />
               </li>
             ))}
@@ -112,7 +94,7 @@ export function Nav() {
                 </summary>
                 <ul className="bg-primary-50 xl:absolute xl:left-0 xl:top-full xl:z-10 xl:min-w-max xl:rounded-b xl:shadow-lg">
                   {servicesLinks.map((link) => (
-                    <li key={link.to}>
+                    <li key={link.path}>
                       <NavLink item={link} />
                     </li>
                   ))}
@@ -121,7 +103,7 @@ export function Nav() {
             </li>
 
             {trailingLinks.map((link) => (
-              <li key={link.to}>
+              <li key={link.path}>
                 <NavLink item={link} />
               </li>
             ))}

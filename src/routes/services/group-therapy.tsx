@@ -5,6 +5,7 @@ import { PageIntro } from '../../components/PageIntro'
 import { PointList } from '../../components/PointList'
 import { Section } from '../../components/Section'
 import { SectionHeading } from '../../components/SectionHeading'
+import { siteRoute } from '../../site/routes'
 
 export const Route = createFileRoute('/services/group-therapy')({
   component: GroupTherapyPage,
@@ -20,7 +21,7 @@ const expectations = [
 function GroupTherapyPage() {
   return (
     <main>
-      <PageIntro title="Group Therapy" draft>
+      <PageIntro title={siteRoute('/services/group-therapy').heading} draft>
         Group Therapy is Resonate&rsquo;s music therapy service for neurodivergent children, run in groups
         of at least three clients at a time. Sessions are led by a credentialed music therapist and focus
         on building social skills through shared musical activities.

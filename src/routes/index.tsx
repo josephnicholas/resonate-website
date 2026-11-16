@@ -2,6 +2,7 @@ import { createFileRoute, Link } from '@tanstack/react-router'
 import { AmtaDefinition } from '../components/AmtaDefinition'
 import { PageIntro } from '../components/PageIntro'
 import { ServiceCards } from '../components/ServiceCards'
+import { siteRoute } from '../site/routes'
 import servicesBg from '../assets/services-bg.jpg'
 import ttkBg from '../assets/kids-background-ttk.jpg'
 import tempoTunesLogo from '../assets/tempokids.png'
@@ -32,7 +33,7 @@ function HomePage() {
         <img src={logo} alt="" className="relative z-10 mx-auto w-6/12" />
       </section>
 
-      <PageIntro title="Music Therapy and Child Enrichment Services">
+      <PageIntro title={siteRoute('/').heading}>
         Resonate Music Therapy Studio is the only music therapy studio in the Visayas, located in Dumaguete
         City, Negros Oriental. We offer specialized music therapy services to individuals and groups of all
         ages and abilities, and we&rsquo;re committed to providing inclusive, welcoming support to everyone who

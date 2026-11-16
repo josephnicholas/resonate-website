@@ -6,6 +6,7 @@ import { PageIntro } from '../components/PageIntro'
 import { PointList } from '../components/PointList'
 import { Section } from '../components/Section'
 import { SectionHeading } from '../components/SectionHeading'
+import { siteRoute } from '../site/routes'
 
 export const Route = createFileRoute('/music-therapy')({
   component: MusicTherapyPage,
@@ -21,7 +22,7 @@ const sessionPoints = [
 function MusicTherapyPage() {
   return (
     <main>
-      <PageIntro title="Music Therapy" draft>
+      <PageIntro title={siteRoute('/music-therapy').heading} draft>
         Music therapy is Resonate Music Therapy Studio&rsquo;s core clinical service &mdash; a therapeutic
         practice delivered by a credentialed professional, distinct from music lessons or classes. This page
         goes into more depth on what that means than the short overview on the home page.

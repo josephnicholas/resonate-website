@@ -5,6 +5,7 @@ import { PageIntro } from '../../components/PageIntro'
 import { Section } from '../../components/Section'
 import { SectionHeading } from '../../components/SectionHeading'
 import { ServiceCards } from '../../components/ServiceCards'
+import { siteRoute } from '../../site/routes'
 
 export const Route = createFileRoute('/services/')({
   component: ServicesPage,
@@ -13,7 +14,7 @@ export const Route = createFileRoute('/services/')({
 function ServicesPage() {
   return (
     <main>
-      <PageIntro title="Our Services" draft>
+      <PageIntro title={siteRoute('/services').heading} draft>
         Resonate Music Therapy Studio offers four services: two formats of music therapy &mdash;
         Individual Therapy and Group Therapy &mdash; plus Adaptive Music Lessons and Company Team Building
         Activities. Explore each below to find the right fit.

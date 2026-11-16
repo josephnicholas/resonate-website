@@ -4,6 +4,7 @@ import { CtaLink } from '../components/CtaLink'
 import { PageIntro } from '../components/PageIntro'
 import { Section } from '../components/Section'
 import { SectionHeading } from '../components/SectionHeading'
+import { siteRoute } from '../site/routes'
 
 export const Route = createFileRoute('/who-we-serve')({
   component: WhoWeServePage,
@@ -35,7 +36,7 @@ const populations = [
 function WhoWeServePage() {
   return (
     <main>
-      <PageIntro title="Who We Serve" draft>
+      <PageIntro title={siteRoute('/who-we-serve').heading} draft>
         Resonate Music Therapy Studio welcomes a wide range of clients. This page draws together who we serve
         from across our services &mdash; individuals and groups of all ages and abilities, neurodivergent
         children, companies, and babies, toddlers, and preschoolers.

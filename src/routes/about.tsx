@@ -4,6 +4,7 @@ import { CtaLink } from '../components/CtaLink'
 import { PageIntro } from '../components/PageIntro'
 import { Section } from '../components/Section'
 import { SectionHeading } from '../components/SectionHeading'
+import { siteRoute } from '../site/routes'
 
 export const Route = createFileRoute('/about')({
   component: AboutPage,
@@ -12,7 +13,7 @@ export const Route = createFileRoute('/about')({
 function AboutPage() {
   return (
     <main>
-      <PageIntro title="About Us" draft>
+      <PageIntro title={siteRoute('/about').heading} draft>
         Resonate Music Therapy Studio offers specialized music therapy services to individuals and groups of
         all ages and abilities, alongside Adaptive Music Lessons, Tempo Tunes, and Company Team Building
         Activities.

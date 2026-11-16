@@ -1,18 +1,19 @@
 import { readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { test, expect } from '@playwright/test'
-import { allRoutes } from './routes.ts'
+import { documentTitle, siteRoutes } from '../src/site/routes.ts'
 
 /**
  * The other entry point into the site: loading a URL directly rather than
  * clicking through the nav (see nav.spec.ts). Every route has to boot the app
  * and render its own page plus the shared shell, not just redirect to `/`.
  */
-for (const route of allRoutes) {
+for (const route of siteRoutes) {
   test(`${route.path} renders when loaded directly`, async ({ page }) => {
     await page.goto(route.path)
 
     await expect(page).toHaveURL(route.path)
+    await expect(page).toHaveTitle(documentTitle(route.path))
     await expect(page.getByRole('heading', { name: route.heading, exact: true, level: 1 })).toBeVisible()
     await expect(page.getByRole('navigation', { name: 'Primary' })).toBeAttached()
     await expect(page.getByRole('contentinfo')).toBeAttached()
