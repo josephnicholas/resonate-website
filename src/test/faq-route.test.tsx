@@ -12,7 +12,7 @@ describe('/faq route', () => {
     expect(page.getByText('What is music therapy?')).toBeInTheDocument()
     expect(page.getByText(/American Music Therapy Association/)).toBeInTheDocument()
     expect(page.getByRole('link', { name: 'Getting Started page' })).toHaveAttribute('href', '/getting-started')
-    expect(page.getByRole('link', { name: 'Tempo Tunes' })).toHaveAttribute('href', '/tempo-tunes')
+    expect(page.getByRole('link', { name: 'Tempo Tunes' })).toHaveAttribute('href', '/tempo-tune')
     expect(page.getByRole('link', { name: 'Get in touch' })).toHaveAttribute('href', '/contact')
   })
 

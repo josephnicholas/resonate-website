@@ -24,7 +24,7 @@ describe('/who-we-serve route', () => {
     )
     expect(page.getByRole('link', { name: 'Babies, Toddlers, and Preschoolers' })).toHaveAttribute(
       'href',
-      '/tempo-tunes',
+      '/tempo-tune',
     )
     expect(page.getByRole('heading', { name: 'Companies', level: 3 })).toBeInTheDocument()
     expect(page.getByRole('link', { name: 'View our services' })).toBeInTheDocument()

@@ -25,7 +25,7 @@ const ROUTES = [
   '/',
   '/music-therapy',
   '/who-we-serve',
-  '/tempo-tunes',
+  '/tempo-tune',
   '/services',
   '/services/individual-therapy',
   '/services/group-therapy',

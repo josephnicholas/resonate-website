@@ -1,9 +1,9 @@
 import { describe, expect, it } from 'vitest'
 import { renderRoute } from './render-route'
 
-describe('/tempo-tunes route', () => {
+describe('/tempo-tune route', () => {
   it('renders the Tempo Tunes page', async () => {
-    const page = await renderRoute('/tempo-tunes')
+    const page = await renderRoute('/tempo-tune')
 
     expect(page.getByRole('heading', { name: 'Tempo Tunes', level: 1 })).toBeInTheDocument()
     expect(page.getByRole('note')).toBeInTheDocument()
@@ -20,7 +20,7 @@ describe('/tempo-tunes route', () => {
   })
 
   it('marks the schedule and enrolment details as still to be confirmed', async () => {
-    const page = await renderRoute('/tempo-tunes')
+    const page = await renderRoute('/tempo-tune')
 
     expect(page.getAllByText(/To confirm:/)).toHaveLength(4)
   })
