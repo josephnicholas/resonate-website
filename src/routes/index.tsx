@@ -10,12 +10,11 @@ import { ServiceCards } from '../components/ServiceCards'
 import { Split } from '../components/Split'
 import { StudioVideo } from '../components/StudioVideo'
 import { Testimonials } from '../components/Testimonials'
+import { textLink } from '../components/prose'
 import { TAGLINE } from '../site/contact'
 import { siteRoute } from '../site/routes'
 import { tempoTune } from '../site/tempo-tune.ts'
 import heroPhoto from '../assets/studio-session.jpg'
-import servicesBg from '../assets/services-bg.jpg'
-import ttkBg from '../assets/kids-background-ttk.jpg'
 import tempoTunesLogo from '../assets/tempokids.png'
 
 export const Route = createFileRoute('/')({
@@ -63,43 +62,32 @@ function HomePage() {
 
       <AmtaDefinition />
 
-      <section
-        className="relative bg-cover bg-center px-4 py-12"
-        style={{ backgroundImage: `url(${servicesBg})` }}
-      >
-        <div aria-hidden="true" className="absolute inset-0 bg-primary-900/70" />
-        <div className="relative mx-auto max-w-6xl">
-          <h2 className="text-center font-heading text-2xl font-semibold text-white sm:text-3xl">Our Services</h2>
+      <Section wide>
+        <SectionHeading>Our Services</SectionHeading>
 
-          <ServiceCards />
+        <ServiceCards />
 
-          <p className="mt-8 text-center">
-            <Link to="/services" className="font-heading font-medium text-white underline hover:text-accent-200">
-              View all services
-            </Link>
-          </p>
+        <div className="mt-8 font-body">
+          <Link to="/services" className={textLink}>
+            View all services
+          </Link>
         </div>
-      </section>
+      </Section>
 
-      <section
-        className="relative bg-cover bg-center px-4 py-12"
-        style={{ backgroundImage: `url(${ttkBg})` }}
-      >
-        <div aria-hidden="true" className="absolute inset-0 bg-primary-900/70" />
-        <div className="relative mx-auto max-w-5xl text-center">
-          <img
-            src={tempoTunesLogo}
-            alt={tempoTune.name}
-            className="mx-auto h-40 w-auto rounded-lg bg-neutral-50/90 p-3"
-          />
-          <p className="mx-auto mt-4 max-w-2xl font-body text-lg leading-relaxed text-white">{tempoTune.summary}</p>
-          <ButtonRow>
-            <ButtonLink to={tempoTune.path} variant="onDark">
-              About {tempoTune.name}
-            </ButtonLink>
-          </ButtonRow>
-        </div>
-      </section>
+      <Band>
+        <SectionHeading>{tempoTune.name}</SectionHeading>
+        <img
+          src={tempoTunesLogo}
+          alt={tempoTune.name}
+          className="mx-auto mt-6 h-44 w-auto rounded-2xl bg-neutral-100 p-6 shadow-md"
+        />
+        <div className="mt-6 font-body text-lg leading-relaxed">{tempoTune.summary}</div>
+        <ButtonRow>
+          <ButtonLink to={tempoTune.path} variant="secondary">
+            About {tempoTune.name}
+          </ButtonLink>
+        </ButtonRow>
+      </Band>
 
       <Split
         media={

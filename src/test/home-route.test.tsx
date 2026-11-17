@@ -20,6 +20,7 @@ describe('/ route', () => {
     expect(page.getByLabelText(/introduction film/)).toBeInTheDocument()
     expect(page.getAllByRole('link', { name: 'Get in touch' })[0]).toHaveAttribute('href', '/contact')
     expect(page.getByRole('link', { name: 'Watch our story (2 min)' })).toHaveAttribute('href', '#our-story')
+    expect(page.getByRole('heading', { name: 'Tempo Tune', level: 2 })).toBeInTheDocument()
     expect(page.getByRole('link', { name: 'About Tempo Tune' })).toHaveAttribute('href', '/tempo-tune')
     expect(page.getByRole('heading', { name: 'Meet Our Team', level: 2 })).toBeInTheDocument()
     expect(page.getByText(/our two music therapists/)).toBeInTheDocument()
@@ -37,5 +38,14 @@ describe('/ route', () => {
     for (const quote of quotes) {
       expect(quote).toHaveTextContent(/To confirm: a family’s own words/)
     }
+  })
+
+  it('keeps an inline background photo only on the hero', async () => {
+    const page = await renderRoute('/')
+
+    const main = page.getByRole('heading', { level: 1 }).closest('main')!
+    const withPhoto = [...main.querySelectorAll<HTMLElement>('[style*="background-image"]')]
+    expect(withPhoto).toHaveLength(1)
+    expect(withPhoto[0]).toContainElement(page.getByRole('heading', { level: 1 }))
   })
 })
