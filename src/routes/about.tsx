@@ -1,11 +1,12 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { Band } from '../components/Band'
-import { ImagePlaceholder } from '../components/ImagePlaceholder'
 import { ClosingCta } from '../components/ClosingCta'
 import { PageIntro } from '../components/PageIntro'
+import { Section } from '../components/Section'
 import { SectionHeading } from '../components/SectionHeading'
 import { Split } from '../components/Split'
 import { StudioVideo } from '../components/StudioVideo'
+import { TeamMembers } from '../components/TeamMembers'
 import { ToConfirm } from '../components/ToConfirm'
 import { siteRoute } from '../site/routes'
 
@@ -31,43 +32,17 @@ function AboutPage() {
         </p>
       </Split>
 
-      <Split
-        mediaRight
-        media={
-          <ImagePlaceholder
-            className="aspect-[4/3] rounded-2xl"
-            description="Portrait of the studio's music therapist (awaiting their agreement to be pictured)"
-          />
-        }
-      >
-        <SectionHeading align="left">Our Team</SectionHeading>
-        <p>Music therapy at Resonate is delivered by a credentialed music therapist.</p>
-        <dl className="mt-6 grid gap-4 font-body leading-relaxed">
-          <div>
-            <dt className="font-heading text-sm font-semibold uppercase tracking-wide text-neutral-600">Name</dt>
-            <dd className="m-0">
-              <ToConfirm>the therapist&rsquo;s name, if they are willing to be named</ToConfirm>
-            </dd>
-          </div>
-          <div>
-            <dt className="font-heading text-sm font-semibold uppercase tracking-wide text-neutral-600">
-              Credentials
-            </dt>
-            <dd className="m-0">
-              <ToConfirm>qualifications, certification, and where they trained</ToConfirm>
-            </dd>
-          </div>
-          <div>
-            <dt className="font-heading text-sm font-semibold uppercase tracking-wide text-neutral-600">About</dt>
-            <dd className="m-0">
-              <ToConfirm>a short bio: background, experience, and approach, in the therapist&rsquo;s own words</ToConfirm>
-            </dd>
-          </div>
-        </dl>
+      <Section wide>
+        <SectionHeading>Our Team</SectionHeading>
+        <p className="mx-auto max-w-3xl">
+          Music therapy at Resonate is delivered by two music therapists: the studio&rsquo;s founder
+          and director, and a music therapist on our staff.
+        </p>
+        <TeamMembers />
         <p>
           <ToConfirm>whether anyone else teaches or assists at the studio and should be introduced here</ToConfirm>
         </p>
-      </Split>
+      </Section>
 
       <Band>
         <SectionHeading>Where We Are</SectionHeading>

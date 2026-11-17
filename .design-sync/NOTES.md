@@ -120,7 +120,8 @@ therefore new — investigate it rather than assuming it is pre-existing.
 - **The page skeleton blocks are not synced yet.** `PageIntro`, `Section`,
   `Band`, `SectionHeading`, `PointList`, `CardGrid`/`Card` and
   `ServiceCards` (added 2026-11-16), plus `ButtonLink`/`ButtonRow`, `ClosingCta`, `Split`,
-  `Comparison` and `StudioVideo` (added 2026-11-17, when `CtaLink` was removed), are deliberately absent from
+  `Comparison` and `StudioVideo` (added 2026-11-17, when `CtaLink` was removed), plus `QuestionList`/`Question`,
+  `Testimonials` and `TeamMembers` (added 2026-11-18), are deliberately absent from
   `entry.ts` and `config.json`. They are the "house patterns worth copying" that
   `conventions.md` still describes as raw utility classes; when they are synced,
   rewrite that paragraph and the "idiomatic page" example to use them.

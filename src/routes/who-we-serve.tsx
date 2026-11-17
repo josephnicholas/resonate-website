@@ -97,7 +97,7 @@ function WhoWeServePage() {
         </p>
         <p>
           <ToConfirm>
-            the specific conditions and diagnoses the studio supports, in the wording the therapist prefers,
+            the specific conditions and diagnoses the studio supports, in the wording the therapists prefer,
             and any the studio does not work with
           </ToConfirm>
         </p>

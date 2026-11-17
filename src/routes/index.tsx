@@ -105,14 +105,14 @@ function HomePage() {
         media={
           <ImagePlaceholder
             className="aspect-[4/3] rounded-2xl"
-            description="Portrait of the studio's music therapist (awaiting their agreement to be pictured)"
+            description="Portrait of the studio’s two music therapists (awaiting their agreement to be pictured)"
           />
         }
       >
         <SectionHeading align="left">Meet Our Team</SectionHeading>
         <p>
-          Music therapy at Resonate is delivered by a credentialed music therapist &mdash; a professional who
-          has completed an approved music therapy program.
+          Music therapy at Resonate is delivered by our two music therapists: the studio&rsquo;s founder and
+          director, and a music therapist on our staff.
         </p>
         <ButtonRow align="left">
           <ButtonLink to="/about" variant="secondary">
