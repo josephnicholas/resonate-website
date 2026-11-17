@@ -2,6 +2,7 @@ import { Link, useRouterState } from '@tanstack/react-router'
 import { useRef, useState } from 'react'
 import logo from '../assets/logo.png'
 import { routesInGroup, SITE_NAME, type SiteRoute } from '../site/routes'
+import { ButtonLink } from './ButtonLink'
 
 const primaryLinks = routesInGroup('primary')
 const servicesLinks = routesInGroup('services')
@@ -16,7 +17,7 @@ const trailingLinks = routesInGroup('trailing')
 // applied exclusively. Putting the base colour in `linkClassName` and appending
 // the active one leaves both `text-*` utilities on the element, and then the
 // stylesheet's emission order decides which wins — not the authoring order.
-const linkClassName = 'block px-3 py-2 font-heading font-semibold text-xl'
+const linkClassName = 'block px-3 py-2 font-heading font-semibold text-lg'
 const activeColorClassName = 'text-accent-700 underline underline-offset-4'
 const inactiveColorClassName = 'text-primary-700 hover:text-secondary-800'
 
@@ -57,32 +58,42 @@ export function Nav() {
   }
 
   return (
-    <header className="bg-primary-100">
-      <div className="flex w-full flex-wrap items-center justify-between gap-x-8 px-6 py-12 md:px-12">
-        <Link to="/" className="flex shrink-0 items-center" onClick={closeMenus}>
-          <img src={logo} alt={SITE_NAME} className="h-12 w-auto sm:h-16 xl:h-18" />
+    <header className="sticky top-0 z-40 bg-primary-100 shadow-sm">
+      <div className="flex w-full flex-wrap items-center gap-x-3 px-4 py-3 sm:gap-x-6 md:px-8">
+        <Link to="/" className="mr-auto flex shrink-0 items-center" onClick={closeMenus}>
+          <img src={logo} alt={SITE_NAME} className="h-8 w-auto sm:h-12" />
         </Link>
-        <button
-          type="button"
-          className="rounded p-2 text-primary-700 xl:hidden"
-          aria-expanded={mobileOpen}
-          aria-controls="primary-navigation"
-          onClick={() => setMobileOpen((open) => !open)}
-        >
-          <span className="sr-only">{mobileOpen ? 'Close menu' : 'Open menu'}</span>
-          <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2">
-            {mobileOpen ? (
-              <path strokeLinecap="round" d="M6 6l12 12M18 6L6 18" />
-            ) : (
-              <path strokeLinecap="round" d="M4 6h16M4 12h16M4 18h16" />
-            )}
-          </svg>
-        </button>
+
+        {/* After the nav in tab order on wide screens; beside the menu button on narrow ones. */}
+        <div className="flex items-center gap-2 xl:order-last">
+          {/* Dropped on the narrowest phones, where it would wrap under the logo; the hero and footer still carry it. */}
+          <span className="max-[359px]:hidden">
+            <ButtonLink to="/contact" compact onClick={closeMenus}>
+              Get in touch
+            </ButtonLink>
+          </span>
+          <button
+            type="button"
+            className="rounded p-2 text-primary-700 xl:hidden"
+            aria-expanded={mobileOpen}
+            aria-controls="primary-navigation"
+            onClick={() => setMobileOpen((open) => !open)}
+          >
+            <span className="sr-only">{mobileOpen ? 'Close menu' : 'Open menu'}</span>
+            <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2">
+              {mobileOpen ? (
+                <path strokeLinecap="round" d="M6 6l12 12M18 6L6 18" />
+              ) : (
+                <path strokeLinecap="round" d="M4 6h16M4 12h16M4 18h16" />
+              )}
+            </svg>
+          </button>
+        </div>
 
         <nav
           id="primary-navigation"
           aria-label="Primary"
-          className={`${mobileOpen ? 'block' : 'hidden'} w-full xl:block xl:w-auto`}
+          className={`${mobileOpen ? 'block' : 'hidden'} max-h-[75vh] w-full overflow-y-auto xl:block xl:max-h-none xl:w-auto xl:overflow-visible`}
         >
           <ul className="flex flex-col xl:flex-row xl:items-center">
             {primaryLinks.map((link) => (

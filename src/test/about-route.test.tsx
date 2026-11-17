@@ -11,6 +11,7 @@ describe('/about route', () => {
     expect(page.getByRole('heading', { name: 'Where We Are', level: 2 })).toBeInTheDocument()
     expect(page.getByText(/Dumaguete City, Negros Oriental/)).toBeInTheDocument()
     expect(page.getByText(/only music therapy studio in the Visayas/)).toBeInTheDocument()
-    expect(page.getByRole('link', { name: 'Contact us' })).toBeInTheDocument()
+    expect(page.getByLabelText(/introduction film/)).toBeInTheDocument()
+    expect(page.getByRole('link', { name: 'Get in touch' })).toHaveAttribute('href', '/contact')
   })
 })

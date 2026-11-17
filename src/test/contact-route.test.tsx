@@ -15,7 +15,15 @@ describe('/contact route', () => {
     const facebookLink = page.getByRole('link', { name: 'Facebook' })
     expect(facebookLink).toHaveAttribute('href', 'https://www.facebook.com/resonatemtstudio')
 
-    expect(page.getByRole('heading', { name: 'About Our Contact Form', level: 2 })).toBeInTheDocument()
-    expect(page.getByText(/don.t have a working contact form/i)).toBeInTheDocument()
+    expect(page.getByRole('link', { name: 'Message us on Messenger' })).toHaveAttribute(
+      'href',
+      'https://m.me/resonatemtstudio',
+    )
+    expect(page.getByRole('link', { name: '0917 507 0990' })).toHaveAttribute('href', 'tel:+639175070990')
+    expect(page.getByRole('link', { name: 'resonatemusictherapystudio2024@gmail.com' })).toHaveAttribute(
+      'href',
+      'mailto:resonatemusictherapystudio2024@gmail.com',
+    )
+    expect(page.getByText(/D & I Tinagan Building/)).toBeInTheDocument()
   })
 })

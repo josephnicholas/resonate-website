@@ -1,9 +1,10 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { Band } from '../components/Band'
-import { CtaLink } from '../components/CtaLink'
+import { ClosingCta } from '../components/ClosingCta'
 import { PageIntro } from '../components/PageIntro'
-import { Section } from '../components/Section'
 import { SectionHeading } from '../components/SectionHeading'
+import { Split } from '../components/Split'
+import { StudioVideo } from '../components/StudioVideo'
 import { siteRoute } from '../site/routes'
 
 export const Route = createFileRoute('/about')({
@@ -19,14 +20,14 @@ function AboutPage() {
         Activities.
       </PageIntro>
 
-      <Section align="left">
-        <SectionHeading>Our Mission</SectionHeading>
+      <Split media={<StudioVideo />}>
+        <SectionHeading align="left">Our Mission</SectionHeading>
         <p>
           We&rsquo;re committed to providing inclusive, welcoming support to everyone who walks through our
           doors. Whether you&rsquo;re seeking therapeutic intervention or simply exploring the healing power of
           music, our credentialed team is here to help you on your journey.
         </p>
-      </Section>
+      </Split>
 
       <Band>
         <SectionHeading>Where We Are</SectionHeading>
@@ -37,14 +38,12 @@ function AboutPage() {
         </p>
       </Band>
 
-      <Section>
-        <SectionHeading>Want to Know More?</SectionHeading>
+      <ClosingCta heading="Want to Know More?" secondary={{ to: '/services', label: 'View our services' }}>
         <p>
           Reach out to ask questions, or explore our services to see what might be the right fit for you or your
           family.
         </p>
-        <CtaLink to="/contact">Contact us</CtaLink>
-      </Section>
+      </ClosingCta>
     </main>
   )
 }

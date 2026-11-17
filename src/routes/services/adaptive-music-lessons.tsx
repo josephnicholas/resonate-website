@@ -1,11 +1,12 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { Band } from '../../components/Band'
-import { CtaLink } from '../../components/CtaLink'
+import { ClosingCta } from '../../components/ClosingCta'
+import { TherapyVsLessons } from '../../components/Comparison'
 import { PageIntro } from '../../components/PageIntro'
 import { PointList } from '../../components/PointList'
-import { Section } from '../../components/Section'
 import { SectionHeading } from '../../components/SectionHeading'
+import { Split, splitImageClassName } from '../../components/Split'
 import { siteRoute } from '../../site/routes'
+import pianoLesson from '../../assets/piano-lesson.jpg'
 
 export const Route = createFileRoute('/services/adaptive-music-lessons')({
   component: AdaptiveMusicLessonsPage,
@@ -27,31 +28,28 @@ function AdaptiveMusicLessonsPage() {
         rather than clinical &mdash; the goal is musical skill itself.
       </PageIntro>
 
-      <Section align="left">
-        <SectionHeading>What to Expect</SectionHeading>
+      <Split
+        mediaRight
+        media={
+          <img
+            src={pianoLesson}
+            alt="Sheet music open on the studio piano during a lesson"
+            className={splitImageClassName}
+          />
+        }
+      >
+        <SectionHeading align="left">What to Expect</SectionHeading>
         <PointList points={expectations} />
-      </Section>
+      </Split>
 
-      <Band>
-        <SectionHeading>Adaptive Music Lessons vs. Music Therapy</SectionHeading>
-        <p>
-          These are two different offerings at Resonate, and we want to be clear about the distinction.
-          Adaptive Music Lessons &mdash; our voice, piano, and guitar lessons adapted to an
-          individual&rsquo;s abilities and needs &mdash; are instructional, not clinical therapy. Music
-          therapy, by contrast, is a clinical, goal-directed treatment delivered by a credentialed
-          professional. If you&rsquo;re not sure which is the right fit, reach out and we can help you
-          figure that out.
-        </p>
-      </Band>
+      <TherapyVsLessons lead="lessons" />
 
-      <Section>
-        <SectionHeading>Ready to Learn More</SectionHeading>
+      <ClosingCta heading="Ready to Learn More?" secondary={{ to: '/services', label: 'View our services' }}>
         <p>
           Adaptive Music Lessons are one part of a broader set of services for people of all ages and
           abilities.
         </p>
-        <CtaLink to="/services">View our services</CtaLink>
-      </Section>
+      </ClosingCta>
     </main>
   )
 }

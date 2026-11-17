@@ -1,10 +1,11 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { Band } from '../../components/Band'
-import { CtaLink } from '../../components/CtaLink'
+import { ClosingCta } from '../../components/ClosingCta'
+import { IndividualVsGroup } from '../../components/Comparison'
+import { ImagePlaceholder } from '../../components/ImagePlaceholder'
 import { PageIntro } from '../../components/PageIntro'
 import { PointList } from '../../components/PointList'
-import { Section } from '../../components/Section'
 import { SectionHeading } from '../../components/SectionHeading'
+import { Split } from '../../components/Split'
 import { siteRoute } from '../../site/routes'
 
 export const Route = createFileRoute('/services/individual-therapy')({
@@ -28,29 +29,23 @@ function IndividualTherapyPage() {
         Therapy.
       </PageIntro>
 
-      <Section align="left">
-        <SectionHeading>What to Expect</SectionHeading>
+      <Split
+        mediaRight
+        media={
+          <ImagePlaceholder className="aspect-[4/3] rounded-2xl" description="A one-on-one music therapy session in the studio" />
+        }
+      >
+        <SectionHeading align="left">What to Expect</SectionHeading>
         <PointList points={expectations} />
-      </Section>
+      </Split>
 
-      <Band>
-        <SectionHeading>Individual Therapy vs. Group Therapy</SectionHeading>
-        <p>
-          Individual Therapy and Group Therapy are both music therapy &mdash; delivered by a credentialed
-          professional, working toward each client&rsquo;s specific goals. The difference is format:
-          Individual Therapy is one-on-one, while Group Therapy brings together at least three
-          neurodivergent children at a time with a focus on social skills. Some clients benefit from one,
-          some from the other, and some from both.
-        </p>
-      </Band>
+      <IndividualVsGroup lead="individual" />
 
-      <Section>
-        <SectionHeading>Ready to Learn More</SectionHeading>
+      <ClosingCta heading="Ready to Learn More?" secondary={{ to: '/services', label: 'View our services' }}>
         <p>
           Individual Therapy is one part of a broader set of services for people of all ages and abilities.
         </p>
-        <CtaLink to="/services">View our services</CtaLink>
-      </Section>
+      </ClosingCta>
     </main>
   )
 }

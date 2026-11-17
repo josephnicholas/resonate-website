@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { Card, CardGrid } from '../components/CardGrid'
-import { CtaLink } from '../components/CtaLink'
+import { ClosingCta } from '../components/ClosingCta'
 import { PageIntro } from '../components/PageIntro'
 import { Section } from '../components/Section'
 import { SectionHeading } from '../components/SectionHeading'
@@ -53,14 +53,12 @@ function WhoWeServePage() {
         </CardGrid>
       </Section>
 
-      <Section>
-        <SectionHeading>Find the Right Fit</SectionHeading>
+      <ClosingCta heading="Find the Right Fit" secondary={{ to: '/services', label: 'View our services' }}>
         <p>
           Not sure which service fits your needs? Explore our full range of services, or reach out and we can
           help you figure out the right starting point.
         </p>
-        <CtaLink to="/services">View our services</CtaLink>
-      </Section>
+      </ClosingCta>
     </main>
   )
 }

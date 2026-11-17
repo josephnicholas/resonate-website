@@ -145,3 +145,6 @@ dist
 /.design-sync/.cache/
 /.design-sync/learnings/
 /.design-sync/node_modules
+
+# Full-size source media kept locally for re-encoding; too large for git (GitHub rejects files over 100 MB)
+/media-source/

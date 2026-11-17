@@ -60,6 +60,13 @@
 }
 
 @layer base {
+  /* In-page links (the hero's "Watch our story") glide rather than jump. */
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
   *,
   *::before,
   *::after {

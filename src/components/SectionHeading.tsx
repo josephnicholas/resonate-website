@@ -1,6 +1,16 @@
 import type { ReactNode } from 'react'
 
-/** A section's `h2`. Always centred, whatever the section's body alignment. */
-export function SectionHeading({ children }: { children: ReactNode }) {
-  return <h2 className="text-center font-heading text-2xl font-semibold sm:text-3xl">{children}</h2>
+type SectionHeadingProps = {
+  /** Centred by default; `left` is for headings inside a `Split`. */
+  align?: 'center' | 'left'
+  children: ReactNode
+}
+
+/** A section's `h2`. */
+export function SectionHeading({ align = 'center', children }: SectionHeadingProps) {
+  return (
+    <h2 className={`font-heading text-2xl font-semibold sm:text-3xl ${align === 'center' ? 'text-center' : ''}`}>
+      {children}
+    </h2>
+  )
 }

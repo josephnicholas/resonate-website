@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { Band } from '../../components/Band'
-import { CtaLink } from '../../components/CtaLink'
+import { ButtonLink, ButtonRow } from '../../components/ButtonLink'
 import { PageIntro } from '../../components/PageIntro'
 import { Section } from '../../components/Section'
 import { SectionHeading } from '../../components/SectionHeading'
@@ -27,12 +27,17 @@ function ServicesPage() {
       </Section>
 
       <Band>
-        <SectionHeading>Not Sure Where to Start</SectionHeading>
+        <SectionHeading>Not Sure Where to Start?</SectionHeading>
         <p>
           Not sure which service is the right fit? Take a look at who we serve, or reach out and we can help
           you find the right starting point.
         </p>
-        <CtaLink to="/who-we-serve">See who we serve</CtaLink>
+        <ButtonRow>
+          <ButtonLink to="/contact">Get in touch</ButtonLink>
+          <ButtonLink to="/who-we-serve" variant="secondary">
+            See who we serve
+          </ButtonLink>
+        </ButtonRow>
       </Band>
     </main>
   )

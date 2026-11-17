@@ -14,7 +14,7 @@ test.describe('desktop nav', () => {
       await nav.getByRole('link', { name: link.label, exact: true }).click()
 
       await expect(page).toHaveURL(link.path)
-      await expect(page.getByRole('heading', { name: link.heading, exact: true })).toBeVisible()
+      await expect(page.getByRole('heading', { name: link.heading, exact: true, level: 1 })).toBeVisible()
     })
   }
 
@@ -73,7 +73,7 @@ test.describe('desktop nav', () => {
       await nav.getByRole('link', { name: link.label, exact: true }).click()
 
       await expect(page).toHaveURL(link.path)
-      await expect(page.getByRole('heading', { name: link.heading, exact: true })).toBeVisible()
+      await expect(page.getByRole('heading', { name: link.heading, exact: true, level: 1 })).toBeVisible()
     })
   }
 
@@ -132,7 +132,7 @@ test.describe('mobile nav', () => {
       await nav.getByRole('link', { name: link.label, exact: true }).click()
 
       await expect(page).toHaveURL(link.path)
-      await expect(page.getByRole('heading', { name: link.heading, exact: true })).toBeVisible()
+      await expect(page.getByRole('heading', { name: link.heading, exact: true, level: 1 })).toBeVisible()
     })
   }
 })

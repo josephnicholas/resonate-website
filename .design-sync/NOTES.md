@@ -118,8 +118,9 @@ therefore new — investigate it rather than assuming it is pre-existing.
   A renamed or deleted one leaves an orphan in the uploaded project — the
   re-sync diff's `upload.deletePaths` handles it only if the anchor is intact.
 - **The page skeleton blocks are not synced yet.** `PageIntro`, `Section`,
-  `Band`, `SectionHeading`, `PointList`, `CardGrid`/`Card`, `CtaLink` and
-  `ServiceCards` were added to `src/components/` on 2026-11-16 and are deliberately absent from
+  `Band`, `SectionHeading`, `PointList`, `CardGrid`/`Card` and
+  `ServiceCards` (added 2026-11-16), plus `ButtonLink`/`ButtonRow`, `ClosingCta`, `Split`,
+  `Comparison` and `StudioVideo` (added 2026-11-17, when `CtaLink` was removed), are deliberately absent from
   `entry.ts` and `config.json`. They are the "house patterns worth copying" that
   `conventions.md` still describes as raw utility classes; when they are synced,
   rewrite that paragraph and the "idiomatic page" example to use them.

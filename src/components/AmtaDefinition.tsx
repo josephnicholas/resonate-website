@@ -4,7 +4,7 @@ import { SectionHeading } from './SectionHeading'
 export function AmtaDefinition() {
   return (
     <Band>
-      <SectionHeading>What is Music Therapy</SectionHeading>
+      <SectionHeading>What Is Music Therapy?</SectionHeading>
       <figure>
         <blockquote className="mt-4 font-body text-lg italic leading-relaxed">
           &ldquo;A clinical and evidence-based application of music interventions to accomplish

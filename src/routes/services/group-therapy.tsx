@@ -1,10 +1,11 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { Band } from '../../components/Band'
-import { CtaLink } from '../../components/CtaLink'
+import { ClosingCta } from '../../components/ClosingCta'
+import { IndividualVsGroup } from '../../components/Comparison'
+import { ImagePlaceholder } from '../../components/ImagePlaceholder'
 import { PageIntro } from '../../components/PageIntro'
 import { PointList } from '../../components/PointList'
-import { Section } from '../../components/Section'
 import { SectionHeading } from '../../components/SectionHeading'
+import { Split } from '../../components/Split'
 import { siteRoute } from '../../site/routes'
 
 export const Route = createFileRoute('/services/group-therapy')({
@@ -27,29 +28,23 @@ function GroupTherapyPage() {
         on building social skills through shared musical activities.
       </PageIntro>
 
-      <Section align="left">
-        <SectionHeading>What to Expect</SectionHeading>
+      <Split
+        mediaRight
+        media={
+          <ImagePlaceholder className="aspect-[4/3] rounded-2xl" description="A small group of children making music together with a therapist" />
+        }
+      >
+        <SectionHeading align="left">What to Expect</SectionHeading>
         <PointList points={expectations} />
-      </Section>
+      </Split>
 
-      <Band>
-        <SectionHeading>Group Therapy vs. Individual Therapy</SectionHeading>
-        <p>
-          Group Therapy and Individual Therapy are both music therapy &mdash; delivered by a credentialed
-          professional, working toward each client&rsquo;s specific goals. The difference is format: Group
-          Therapy brings together at least three neurodivergent children at a time with a focus on social
-          skills, while Individual Therapy is one-on-one. Some clients benefit from one, some from the
-          other, and some from both.
-        </p>
-      </Band>
+      <IndividualVsGroup lead="group" />
 
-      <Section>
-        <SectionHeading>Ready to Learn More</SectionHeading>
+      <ClosingCta heading="Ready to Learn More?" secondary={{ to: '/services', label: 'View our services' }}>
         <p>
           Group Therapy is one part of a broader set of services for people of all ages and abilities.
         </p>
-        <CtaLink to="/services">View our services</CtaLink>
-      </Section>
+      </ClosingCta>
     </main>
   )
 }

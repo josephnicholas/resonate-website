@@ -1,11 +1,12 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { AmtaDefinition } from '../components/AmtaDefinition'
-import { Band } from '../components/Band'
-import { CtaLink } from '../components/CtaLink'
+import { ClosingCta } from '../components/ClosingCta'
+import { TherapyVsLessons } from '../components/Comparison'
+import { ImagePlaceholder } from '../components/ImagePlaceholder'
 import { PageIntro } from '../components/PageIntro'
 import { PointList } from '../components/PointList'
-import { Section } from '../components/Section'
 import { SectionHeading } from '../components/SectionHeading'
+import { Split } from '../components/Split'
 import { siteRoute } from '../site/routes'
 
 export const Route = createFileRoute('/music-therapy')({
@@ -30,30 +31,24 @@ function MusicTherapyPage() {
 
       <AmtaDefinition />
 
-      <Section align="left">
-        <SectionHeading>What to Expect in a Session</SectionHeading>
+      <Split
+        mediaRight
+        media={
+          <ImagePlaceholder className="aspect-[4/3] rounded-2xl" description="A music therapist and client working together in a session" />
+        }
+      >
+        <SectionHeading align="left">What to Expect in a Session</SectionHeading>
         <PointList points={sessionPoints} />
-      </Section>
+      </Split>
 
-      <Band>
-        <SectionHeading>Music Therapy vs. Adaptive Music Lessons</SectionHeading>
-        <p>
-          These are two different offerings at Resonate, and we want to be clear about the distinction. Music
-          therapy is a clinical, goal-directed treatment delivered by a credentialed professional. Adaptive
-          Music Lessons &mdash; our voice, piano, and guitar lessons adapted to an individual&rsquo;s abilities
-          and needs &mdash; are instructional, not clinical therapy. If you&rsquo;re not sure which is the right
-          fit, reach out and we can help you figure that out.
-        </p>
-      </Band>
+      <TherapyVsLessons lead="therapy" />
 
-      <Section>
-        <SectionHeading>Ready to Learn More</SectionHeading>
+      <ClosingCta heading="Ready to Learn More?" secondary={{ to: '/services', label: 'View our services' }}>
         <p>
           Music therapy at Resonate is offered individually and in groups, and is one part of a broader set of
           services for people of all ages and abilities.
         </p>
-        <CtaLink to="/services">View our services</CtaLink>
-      </Section>
+      </ClosingCta>
     </main>
   )
 }
