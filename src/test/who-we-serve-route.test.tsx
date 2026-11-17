@@ -7,16 +7,26 @@ describe('/who-we-serve route', () => {
 
     expect(page.getByRole('heading', { name: 'Who We Serve', level: 1 })).toBeInTheDocument()
     expect(page.getByRole('note')).toBeInTheDocument()
-    expect(page.getByRole('heading', { name: 'Populations We Serve', level: 2 })).toBeInTheDocument()
-    expect(
-      page.getByRole('heading', { name: 'Individuals and Groups of All Ages and Abilities', level: 3 }),
-    ).toBeInTheDocument()
-    expect(page.getByRole('heading', { name: 'Neurodivergent Children', level: 3 })).toBeInTheDocument()
+
+    expect(page.getByRole('heading', { name: 'Needs We Work On', level: 2 })).toBeInTheDocument()
+    expect(page.getByRole('heading', { name: 'Communication', level: 3 })).toBeInTheDocument()
+    expect(page.getByRole('heading', { name: 'Social Skills', level: 3 })).toBeInTheDocument()
+    expect(page.getByRole('heading', { name: 'Emotional Regulation', level: 3 })).toBeInTheDocument()
+    expect(page.getByRole('heading', { name: 'Motor Skills', level: 3 })).toBeInTheDocument()
+
+    expect(page.getByRole('heading', { name: 'Conditions We Support', level: 2 })).toBeInTheDocument()
+    expect(page.getByText(/conditions and diagnoses/)).toHaveTextContent(/^To confirm:/)
+
+    expect(page.getByRole('heading', { name: 'Who Comes to Us', level: 2 })).toBeInTheDocument()
+    expect(page.getByRole('link', { name: 'Neurodivergent Children' })).toHaveAttribute(
+      'href',
+      '/services/group-therapy',
+    )
+    expect(page.getByRole('link', { name: 'Babies, Toddlers, and Preschoolers' })).toHaveAttribute(
+      'href',
+      '/tempo-tunes',
+    )
     expect(page.getByRole('heading', { name: 'Companies', level: 3 })).toBeInTheDocument()
-    expect(
-      page.getByRole('heading', { name: 'Babies, Toddlers, and Preschoolers', level: 3 }),
-    ).toBeInTheDocument()
-    expect(page.getByText(/Tempo Tunes/)).toBeInTheDocument()
     expect(page.getByRole('link', { name: 'View our services' })).toBeInTheDocument()
   })
 })

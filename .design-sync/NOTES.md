@@ -133,7 +133,7 @@ therefore new — investigate it rather than assuming it is pre-existing.
   `./services.ts` with an explicit `.ts` extension). The sync has not been
   re-run since, so whether the converter's bundler follows that import is
   unverified. `preview-provider.tsx` still keeps its own `ROUTES` list of the
-  nine paths; it could read the registry instead once a sync confirms the
+  twelve paths; it could read the registry instead once a sync confirms the
   import resolves.
 - **`.design-sync/docs/*.md` describe behaviour prose-style** (the
   `<details>` dropdown, the `xl` breakpoint, band colours, `role="note"`). These

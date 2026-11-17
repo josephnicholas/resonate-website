@@ -1,13 +1,18 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
+import { Band } from '../components/Band'
 import { AmtaDefinition } from '../components/AmtaDefinition'
 import { ButtonLink, ButtonRow } from '../components/ButtonLink'
 import { ClosingCta } from '../components/ClosingCta'
+import { ImagePlaceholder } from '../components/ImagePlaceholder'
 import { Section } from '../components/Section'
 import { SectionHeading } from '../components/SectionHeading'
 import { ServiceCards } from '../components/ServiceCards'
+import { Split } from '../components/Split'
 import { StudioVideo } from '../components/StudioVideo'
+import { Testimonials } from '../components/Testimonials'
 import { TAGLINE } from '../site/contact'
 import { siteRoute } from '../site/routes'
+import { tempoTunes } from '../site/tempo-tunes'
 import heroPhoto from '../assets/studio-session.jpg'
 import servicesBg from '../assets/services-bg.jpg'
 import ttkBg from '../assets/kids-background-ttk.jpg'
@@ -16,15 +21,6 @@ import tempoTunesLogo from '../assets/tempokids.png'
 export const Route = createFileRoute('/')({
   component: HomePage,
 })
-
-const tempoTunesPoints = [
-  'Learning and experiencing music boosts the brain and can positively impact a child’s development.',
-  'Classes are filled with fun, entertaining activities that are also beneficial to the child.',
-  'We provide a clean, safe environment and a loving atmosphere for learning.',
-  'A play-based program that uses music to achieve both musical and non-musical goals.',
-  'A great way for parents to spend time with their child and for families to bond together.',
-  'We use live music in almost all of our classes.',
-]
 
 function HomePage() {
   return (
@@ -91,22 +87,46 @@ function HomePage() {
       >
         <div aria-hidden="true" className="absolute inset-0 bg-primary-900/70" />
         <div className="relative mx-auto max-w-5xl text-center">
-          <img src={tempoTunesLogo} alt="Tempo Tunes" className="mx-auto h-40 w-auto rounded-lg bg-neutral-50/90 p-3" />
-          <p className="mx-auto mt-4 max-w-2xl font-body text-lg leading-relaxed text-white">
-            A 10-day program that offers music enrichment classes to babies, toddlers, and preschoolers.
-          </p>
-
-          <ul className="mx-auto mt-8 grid max-w-4xl gap-6 text-left sm:grid-cols-2">
-            {tempoTunesPoints.map((point) => (
-              <li key={point} className="rounded-lg bg-neutral-50 p-4 font-body text-sm leading-relaxed shadow-md">
-                {point}
-              </li>
-            ))}
-          </ul>
+          <img
+            src={tempoTunesLogo}
+            alt={tempoTunes.name}
+            className="mx-auto h-40 w-auto rounded-lg bg-neutral-50/90 p-3"
+          />
+          <p className="mx-auto mt-4 max-w-2xl font-body text-lg leading-relaxed text-white">{tempoTunes.summary}</p>
+          <ButtonRow>
+            <ButtonLink to={tempoTunes.path} variant="onDark">
+              About {tempoTunes.name}
+            </ButtonLink>
+          </ButtonRow>
         </div>
       </section>
 
-      <ClosingCta heading="Not Sure Where to Start?" secondary={{ to: '/who-we-serve', label: 'See who we serve' }}>
+      <Split
+        media={
+          <ImagePlaceholder
+            className="aspect-[4/3] rounded-2xl"
+            description="Portrait of the studio's music therapist (awaiting their agreement to be pictured)"
+          />
+        }
+      >
+        <SectionHeading align="left">Meet Our Team</SectionHeading>
+        <p>
+          Music therapy at Resonate is delivered by a credentialed music therapist &mdash; a professional who
+          has completed an approved music therapy program.
+        </p>
+        <ButtonRow align="left">
+          <ButtonLink to="/about" variant="secondary">
+            Meet the team
+          </ButtonLink>
+        </ButtonRow>
+      </Split>
+
+      <Band wide>
+        <SectionHeading>What Families Say</SectionHeading>
+        <Testimonials />
+      </Band>
+
+      <ClosingCta heading="Not Sure Where to Start?" secondary={{ to: '/getting-started', label: 'How to get started' }}>
         <p>Tell us a little about who the sessions are for, and we&rsquo;ll help you find the right fit.</p>
       </ClosingCta>
     </main>

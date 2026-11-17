@@ -17,7 +17,9 @@ const trailingLinks = routesInGroup('trailing')
 // applied exclusively. Putting the base colour in `linkClassName` and appending
 // the active one leaves both `text-*` utilities on the element, and then the
 // stylesheet's emission order decides which wins — not the authoring order.
-const linkClassName = 'block px-3 py-2 font-heading font-semibold text-lg'
+// Nine top-level entries only fit on one row at `xl` (1280px) at the smaller
+// size; the roomier one returns at `2xl`. Check 1280px when adding a page.
+const linkClassName = 'block px-3 py-2 font-heading font-semibold text-lg xl:px-1.5 xl:text-base 2xl:px-3 2xl:text-lg'
 const activeColorClassName = 'text-accent-700 underline underline-offset-4'
 const inactiveColorClassName = 'text-primary-700 hover:text-secondary-800'
 
@@ -59,7 +61,7 @@ export function Nav() {
 
   return (
     <header className="sticky top-0 z-40 bg-primary-100 shadow-sm">
-      <div className="flex w-full flex-wrap items-center gap-x-3 px-4 py-3 sm:gap-x-6 md:px-8">
+      <div className="flex w-full flex-wrap items-center gap-x-3 px-4 py-3 sm:gap-x-6 md:px-8 xl:gap-x-4 2xl:gap-x-6">
         <Link to="/" className="mr-auto flex shrink-0 items-center" onClick={closeMenus}>
           <img src={logo} alt={SITE_NAME} className="h-8 w-auto sm:h-12" />
         </Link>

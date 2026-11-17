@@ -1,4 +1,5 @@
 import { services } from './services.ts'
+import { tempoTunes } from './tempo-tunes.ts'
 
 /**
  * The route registry: every page on the site, in nav order.
@@ -23,6 +24,8 @@ export const siteRoutes = [
   { path: '/', label: 'Home', heading: 'Music Therapy and Child Enrichment Services', group: 'primary' },
   { path: '/music-therapy', label: 'Music Therapy', heading: 'Music Therapy', group: 'primary' },
   { path: '/who-we-serve', label: 'Who We Serve', heading: 'Who We Serve', group: 'primary' },
+  // Tempo Tunes takes its label and heading from its own module, like the Service pages below.
+  { path: tempoTunes.path, label: tempoTunes.name, heading: tempoTunes.name, group: 'primary' },
   { path: '/services', label: 'All Services', heading: 'Our Services', group: 'services' },
   // The Service pages take their label and heading from the Services catalogue.
   { path: individualTherapy.path, label: individualTherapy.name, heading: individualTherapy.name, group: 'services' },
@@ -33,6 +36,8 @@ export const siteRoutes = [
     heading: adaptiveMusicLessons.name,
     group: 'services',
   },
+  { path: '/getting-started', label: 'Getting Started', heading: 'Getting Started', group: 'trailing' },
+  { path: '/faq', label: 'FAQ', heading: 'Frequently Asked Questions', group: 'trailing' },
   { path: '/about', label: 'About Us', heading: 'About Us', group: 'trailing' },
   { path: '/contact', label: 'Contact', heading: 'Contact', group: 'trailing' },
 ] as const

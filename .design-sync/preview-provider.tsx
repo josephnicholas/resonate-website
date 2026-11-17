@@ -6,7 +6,7 @@
 // what `<RouterProvider>` gives you (it ignores children and renders matches).
 // `<RouterContextProvider>` supplies the context and renders children instead.
 //
-// The route tree here mirrors the site's nine URLs so `<Link to>` resolves real
+// The route tree here mirrors the site's twelve URLs so `<Link to>` resolves real
 // hrefs and `activeProps` highlights correctly; the components are stubs because
 // nothing here ever renders a route.
 //
@@ -25,10 +25,13 @@ const ROUTES = [
   '/',
   '/music-therapy',
   '/who-we-serve',
+  '/tempo-tunes',
   '/services',
   '/services/individual-therapy',
   '/services/group-therapy',
   '/services/adaptive-music-lessons',
+  '/getting-started',
+  '/faq',
   '/about',
   '/contact',
 ]

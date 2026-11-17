@@ -1,6 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { ButtonLink, ButtonRow } from '../components/ButtonLink'
 import { PageIntro } from '../components/PageIntro'
+import { textLink } from '../components/prose'
 import { SectionHeading } from '../components/SectionHeading'
 import { Split, splitImageClassName } from '../components/Split'
 import { contact } from '../site/contact'
@@ -14,8 +15,6 @@ export const Route = createFileRoute('/contact')({
 })
 
 const socialIcons = { Facebook: facebookIcon, Instagram: instagramIcon } as const
-
-const detailLinkClassName = 'font-medium text-primary-600 underline underline-offset-4 hover:text-accent-600'
 
 function ContactPage() {
   return (
@@ -44,7 +43,7 @@ function ContactPage() {
           <div>
             <dt className="font-heading text-sm font-semibold uppercase tracking-wide text-neutral-600">Phone</dt>
             <dd>
-              <a href={contact.phone.href} className={detailLinkClassName}>
+              <a href={contact.phone.href} className={textLink}>
                 {contact.phone.display}
               </a>
             </dd>
@@ -52,7 +51,7 @@ function ContactPage() {
           <div>
             <dt className="font-heading text-sm font-semibold uppercase tracking-wide text-neutral-600">Email</dt>
             <dd>
-              <a href={contact.email.href} className={`${detailLinkClassName} break-all`}>
+              <a href={contact.email.href} className={`${textLink} break-all`}>
                 {contact.email.display}
               </a>
             </dd>
