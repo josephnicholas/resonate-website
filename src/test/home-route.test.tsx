@@ -20,7 +20,7 @@ describe('/ route', () => {
     expect(page.getByLabelText(/introduction film/)).toBeInTheDocument()
     expect(page.getAllByRole('link', { name: 'Get in touch' })[0]).toHaveAttribute('href', '/contact')
     expect(page.getByRole('link', { name: 'Watch our story (2 min)' })).toHaveAttribute('href', '#our-story')
-    expect(page.getByRole('link', { name: 'About Tempo Tunes' })).toHaveAttribute('href', '/tempo-tune')
+    expect(page.getByRole('link', { name: 'About Tempo Tune' })).toHaveAttribute('href', '/tempo-tune')
     expect(page.getByRole('heading', { name: 'Meet Our Team', level: 2 })).toBeInTheDocument()
     expect(page.getByRole('link', { name: 'Meet the team' })).toHaveAttribute('href', '/about')
     expect(page.getByRole('heading', { name: 'What Families Say', level: 2 })).toBeInTheDocument()

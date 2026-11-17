@@ -7,7 +7,7 @@ describe('/tempo-tune route', () => {
 
     expect(page.getByRole('heading', { name: 'Tempo Tune', level: 1 })).toBeInTheDocument()
     expect(page.getByRole('note')).toBeInTheDocument()
-    expect(page.getByAltText('Tempo Tunes logo')).toBeInTheDocument()
+    expect(page.getByAltText('Tempo Tune logo')).toBeInTheDocument()
     expect(page.getByRole('heading', { name: 'What Happens in Class', level: 2 })).toBeInTheDocument()
     expect(page.getByText(/live music in almost all of our classes/)).toBeInTheDocument()
     expect(page.getByRole('heading', { name: 'Ages, Schedule, and Enrolment', level: 2 })).toBeInTheDocument()
