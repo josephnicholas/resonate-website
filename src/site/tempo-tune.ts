@@ -11,9 +11,9 @@
  *
  * Kept free of React and asset imports, like the rest of `src/site/`.
  */
-export const tempoTunes = {
-  name: 'Tempo Tunes',
-  path: '/tempo-tunes',
+export const tempoTune = {
+  name: 'Tempo Tune',
+  path: '/tempo-tune',
   summary: 'A 10-day program that offers music enrichment classes to babies, toddlers, and preschoolers.',
   points: [
     'Learning and experiencing music boosts the brain and can positively impact a child’s development.',

@@ -12,7 +12,7 @@ import { StudioVideo } from '../components/StudioVideo'
 import { Testimonials } from '../components/Testimonials'
 import { TAGLINE } from '../site/contact'
 import { siteRoute } from '../site/routes'
-import { tempoTunes } from '../site/tempo-tunes'
+import { tempoTune } from '../site/tempo-tune.ts'
 import heroPhoto from '../assets/studio-session.jpg'
 import servicesBg from '../assets/services-bg.jpg'
 import ttkBg from '../assets/kids-background-ttk.jpg'
@@ -89,13 +89,13 @@ function HomePage() {
         <div className="relative mx-auto max-w-5xl text-center">
           <img
             src={tempoTunesLogo}
-            alt={tempoTunes.name}
+            alt={tempoTune.name}
             className="mx-auto h-40 w-auto rounded-lg bg-neutral-50/90 p-3"
           />
-          <p className="mx-auto mt-4 max-w-2xl font-body text-lg leading-relaxed text-white">{tempoTunes.summary}</p>
+          <p className="mx-auto mt-4 max-w-2xl font-body text-lg leading-relaxed text-white">{tempoTune.summary}</p>
           <ButtonRow>
-            <ButtonLink to={tempoTunes.path} variant="onDark">
-              About {tempoTunes.name}
+            <ButtonLink to={tempoTune.path} variant="onDark">
+              About {tempoTune.name}
             </ButtonLink>
           </ButtonRow>
         </div>

@@ -7,7 +7,7 @@ import { Section } from '../components/Section'
 import { SectionHeading } from '../components/SectionHeading'
 import { ToConfirm } from '../components/ToConfirm'
 import { siteRoute } from '../site/routes'
-import { tempoTunes } from '../site/tempo-tunes'
+import { tempoTune } from '../site/tempo-tune.ts'
 
 export const Route = createFileRoute('/who-we-serve')({
   component: WhoWeServePage,
@@ -60,8 +60,8 @@ const people = [
   },
   {
     title: 'Babies, Toddlers, and Preschoolers',
-    description: `${tempoTunes.name} is our play-based music enrichment program for the youngest children, using live music in almost all classes.`,
-    to: tempoTunes.path,
+    description: `${tempoTune.name} is our play-based music enrichment program for the youngest children, using live music in almost all classes.`,
+    to: tempoTune.path,
   },
   {
     title: 'Companies',

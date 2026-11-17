@@ -15,7 +15,7 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as GettingStartedRouteImport } from './routes/getting-started'
 import { Route as MusicTherapyRouteImport } from './routes/music-therapy'
-import { Route as TempoTunesRouteImport } from './routes/tempo-tunes'
+import { Route as TempoTuneRouteImport } from './routes/tempo-tune'
 import { Route as WhoWeServeRouteImport } from './routes/who-we-serve'
 import { Route as ServicesIndexRouteImport } from './routes/services/index'
 import { Route as ServicesAdaptiveMusicLessonsRouteImport } from './routes/services/adaptive-music-lessons'
@@ -52,9 +52,9 @@ const MusicTherapyRoute = MusicTherapyRouteImport.update({
   path: '/music-therapy',
   getParentRoute: () => rootRouteImport,
 } as any)
-const TempoTunesRoute = TempoTunesRouteImport.update({
-  id: '/tempo-tunes',
-  path: '/tempo-tunes',
+const TempoTuneRoute = TempoTuneRouteImport.update({
+  id: '/tempo-tune',
+  path: '/tempo-tune',
   getParentRoute: () => rootRouteImport,
 } as any)
 const WhoWeServeRoute = WhoWeServeRouteImport.update({
@@ -92,7 +92,7 @@ export interface FileRoutesByFullPath {
   '/faq': typeof FaqRoute
   '/getting-started': typeof GettingStartedRoute
   '/music-therapy': typeof MusicTherapyRoute
-  '/tempo-tunes': typeof TempoTunesRoute
+  '/tempo-tune': typeof TempoTuneRoute
   '/who-we-serve': typeof WhoWeServeRoute
   '/services/adaptive-music-lessons': typeof ServicesAdaptiveMusicLessonsRoute
   '/services/group-therapy': typeof ServicesGroupTherapyRoute
@@ -106,7 +106,7 @@ export interface FileRoutesByTo {
   '/faq': typeof FaqRoute
   '/getting-started': typeof GettingStartedRoute
   '/music-therapy': typeof MusicTherapyRoute
-  '/tempo-tunes': typeof TempoTunesRoute
+  '/tempo-tune': typeof TempoTuneRoute
   '/who-we-serve': typeof WhoWeServeRoute
   '/services/adaptive-music-lessons': typeof ServicesAdaptiveMusicLessonsRoute
   '/services/group-therapy': typeof ServicesGroupTherapyRoute
@@ -121,7 +121,7 @@ export interface FileRoutesById {
   '/faq': typeof FaqRoute
   '/getting-started': typeof GettingStartedRoute
   '/music-therapy': typeof MusicTherapyRoute
-  '/tempo-tunes': typeof TempoTunesRoute
+  '/tempo-tune': typeof TempoTuneRoute
   '/who-we-serve': typeof WhoWeServeRoute
   '/services/adaptive-music-lessons': typeof ServicesAdaptiveMusicLessonsRoute
   '/services/group-therapy': typeof ServicesGroupTherapyRoute
@@ -137,7 +137,7 @@ export interface FileRouteTypes {
     | '/faq'
     | '/getting-started'
     | '/music-therapy'
-    | '/tempo-tunes'
+    | '/tempo-tune'
     | '/who-we-serve'
     | '/services/adaptive-music-lessons'
     | '/services/group-therapy'
@@ -151,7 +151,7 @@ export interface FileRouteTypes {
     | '/faq'
     | '/getting-started'
     | '/music-therapy'
-    | '/tempo-tunes'
+    | '/tempo-tune'
     | '/who-we-serve'
     | '/services/adaptive-music-lessons'
     | '/services/group-therapy'
@@ -165,7 +165,7 @@ export interface FileRouteTypes {
     | '/faq'
     | '/getting-started'
     | '/music-therapy'
-    | '/tempo-tunes'
+    | '/tempo-tune'
     | '/who-we-serve'
     | '/services/adaptive-music-lessons'
     | '/services/group-therapy'
@@ -180,7 +180,7 @@ export interface RootRouteChildren {
   FaqRoute: typeof FaqRoute
   GettingStartedRoute: typeof GettingStartedRoute
   MusicTherapyRoute: typeof MusicTherapyRoute
-  TempoTunesRoute: typeof TempoTunesRoute
+  TempoTuneRoute: typeof TempoTuneRoute
   WhoWeServeRoute: typeof WhoWeServeRoute
   ServicesAdaptiveMusicLessonsRoute: typeof ServicesAdaptiveMusicLessonsRoute
   ServicesGroupTherapyRoute: typeof ServicesGroupTherapyRoute
@@ -232,11 +232,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MusicTherapyRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/tempo-tunes': {
-      id: '/tempo-tunes'
-      path: '/tempo-tunes'
-      fullPath: '/tempo-tunes'
-      preLoaderRoute: typeof TempoTunesRouteImport
+    '/tempo-tune': {
+      id: '/tempo-tune'
+      path: '/tempo-tune'
+      fullPath: '/tempo-tune'
+      preLoaderRoute: typeof TempoTuneRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/who-we-serve': {
@@ -284,7 +284,7 @@ const rootRouteChildren: RootRouteChildren = {
   FaqRoute: FaqRoute,
   GettingStartedRoute: GettingStartedRoute,
   MusicTherapyRoute: MusicTherapyRoute,
-  TempoTunesRoute: TempoTunesRoute,
+  TempoTuneRoute: TempoTuneRoute,
   WhoWeServeRoute: WhoWeServeRoute,
   ServicesAdaptiveMusicLessonsRoute: ServicesAdaptiveMusicLessonsRoute,
   ServicesGroupTherapyRoute: ServicesGroupTherapyRoute,

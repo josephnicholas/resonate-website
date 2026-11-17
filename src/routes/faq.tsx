@@ -8,7 +8,7 @@ import { SectionHeading } from '../components/SectionHeading'
 import { ToConfirm } from '../components/ToConfirm'
 import { contact } from '../site/contact'
 import { siteRoute } from '../site/routes'
-import { tempoTunes } from '../site/tempo-tunes'
+import { tempoTune } from '../site/tempo-tune.ts'
 
 export const Route = createFileRoute('/faq')({
   component: FaqPage,
@@ -69,11 +69,11 @@ function FaqPage() {
               help you decide.
             </p>
           </Question>
-          <Question question={`Is ${tempoTunes.name} music therapy?`}>
+          <Question question={`Is ${tempoTune.name} music therapy?`}>
             <p>
               No.{' '}
-              <Link to={tempoTunes.path} className={textLink}>
-                {tempoTunes.name}
+              <Link to={tempoTune.path} className={textLink}>
+                {tempoTune.name}
               </Link>{' '}
               is a play-based music enrichment program for babies, toddlers, and preschoolers. It is not
               clinical therapy.
