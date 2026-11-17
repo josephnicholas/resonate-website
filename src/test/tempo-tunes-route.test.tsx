@@ -5,7 +5,7 @@ describe('/tempo-tune route', () => {
   it('renders the Tempo Tunes page', async () => {
     const page = await renderRoute('/tempo-tune')
 
-    expect(page.getByRole('heading', { name: 'Tempo Tunes', level: 1 })).toBeInTheDocument()
+    expect(page.getByRole('heading', { name: 'Tempo Tune', level: 1 })).toBeInTheDocument()
     expect(page.getByRole('note')).toBeInTheDocument()
     expect(page.getByAltText('Tempo Tunes logo')).toBeInTheDocument()
     expect(page.getByRole('heading', { name: 'What Happens in Class', level: 2 })).toBeInTheDocument()

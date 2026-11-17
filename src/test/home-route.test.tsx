@@ -16,7 +16,7 @@ describe('/ route', () => {
     expect(page.getByRole('link', { name: 'Group Therapy' })).toBeInTheDocument()
     expect(page.getByRole('link', { name: 'Adaptive Music Lessons' })).toBeInTheDocument()
     expect(page.getByText('Company Team Building Activities')).toBeInTheDocument()
-    expect(page.getByAltText('Tempo Tunes')).toBeInTheDocument()
+    expect(page.getByAltText('Tempo Tune')).toBeInTheDocument()
     expect(page.getByLabelText(/introduction film/)).toBeInTheDocument()
     expect(page.getAllByRole('link', { name: 'Get in touch' })[0]).toHaveAttribute('href', '/contact')
     expect(page.getByRole('link', { name: 'Watch our story (2 min)' })).toHaveAttribute('href', '#our-story')
