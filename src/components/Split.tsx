@@ -16,7 +16,7 @@ type SplitProps = {
  */
 export function Split({ media, mediaRight = false, children }: SplitProps) {
   return (
-    <section className="mx-auto max-w-6xl px-4 py-12 lg:py-16">
+    <section data-ground="plain" className="mx-auto max-w-6xl px-4 py-12 lg:py-16 [[data-ground=plain]+&]:pt-0">
       <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
         <div className={mediaRight ? 'lg:order-last' : ''}>{media}</div>
         <div className={proseChildren}>{children}</div>

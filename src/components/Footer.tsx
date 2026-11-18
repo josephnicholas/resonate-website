@@ -11,7 +11,7 @@ export function Footer() {
   const year = new Date().getFullYear()
 
   return (
-    <footer className="bg-primary-600 px-6 py-12 font-body text-sm text-white">
+    <footer className="bg-primary-900 px-6 py-12 font-body text-sm text-white">
       <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-3">
         <div>
           <p className="font-heading text-lg font-semibold">{SITE_NAME}</p>
@@ -63,7 +63,7 @@ export function Footer() {
         </div>
       </div>
 
-      <p className="mx-auto mt-10 max-w-6xl border-t border-primary-400 pt-6 text-center">
+      <p className="mx-auto mt-10 max-w-6xl border-t border-primary-700 pt-6 text-center">
         &copy; {year} {SITE_NAME}. All rights reserved.
       </p>
     </footer>

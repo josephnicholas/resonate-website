@@ -9,11 +9,16 @@ type SectionProps = {
   children: ReactNode
 }
 
-/** A page section on the plain page ground. Direct `<p>` children are styled as body copy. */
+/**
+ * A page section on the plain page ground. Direct `<p>` children are styled as body copy.
+ * Straight after another plain-ground section (a `Section` or `Split`) it drops its top
+ * padding, so two neighbours share one gap instead of stacking two.
+ */
 export function Section({ align = 'center', wide = false, children }: SectionProps) {
   return (
     <section
-      className={`mx-auto px-4 py-12 lg:py-16 ${wide ? 'max-w-6xl' : 'max-w-3xl'} ${
+      data-ground="plain"
+      className={`mx-auto px-4 py-12 lg:py-16 [[data-ground=plain]+&]:pt-0 ${wide ? 'max-w-6xl' : 'max-w-3xl'} ${
         align === 'center' ? 'sm:text-center' : ''
       } ${proseChildren}`}
     >

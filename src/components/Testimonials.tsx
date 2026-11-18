@@ -10,7 +10,7 @@ export function Testimonials() {
   return (
     <ul className="mt-8 grid gap-6 text-left md:grid-cols-3">
       {testimonials.map((testimonial, index) => (
-        <li key={index} className="rounded-xl bg-neutral-100 p-6 shadow-md">
+        <li key={index} className="rounded-xl bg-neutral-50 p-6 shadow-md">
           <figure>
             <blockquote className="font-body text-lg leading-relaxed">
               {testimonial.quote ? (

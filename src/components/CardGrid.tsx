@@ -7,10 +7,13 @@ type CardGridProps = {
   children: ReactNode
 }
 
-/** A grid of `Card`s: one column on phones, two from `sm`, optionally four from `xl`. */
+/**
+ * A grid of `Card`s: one column on phones, two from `sm`, optionally four from `xl`.
+ * In a two-column grid, an odd last card spans the row rather than leaving a hole beside it.
+ */
 export function CardGrid({ columns = 2, children }: CardGridProps) {
   return (
-    <ul className={`mt-8 grid gap-6 text-left sm:grid-cols-2 ${columns === 4 ? 'xl:grid-cols-4' : ''}`}>
+    <ul className={`mt-8 grid gap-6 text-left sm:grid-cols-2 ${columns === 4 ? 'xl:grid-cols-4' : 'sm:[&>li:last-child:nth-child(odd)]:col-span-2'}`}>
       {children}
     </ul>
   )

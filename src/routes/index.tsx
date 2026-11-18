@@ -96,7 +96,7 @@ function HomePage() {
           src={tempoTunesLogo}
           alt={tempoTune.name}
           loading="lazy"
-          className="mx-auto mt-6 h-44 w-auto rounded-2xl bg-neutral-100 p-6 shadow-md"
+          className="mx-auto mt-6 h-44 w-auto rounded-2xl bg-neutral-50 p-6 shadow-md"
         />
         <div className="mt-6 font-body text-lg leading-relaxed">{tempoTune.summary}</div>
         <ButtonRow>

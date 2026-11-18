@@ -113,6 +113,14 @@ export function Nav() {
                   aria-current={isServicesActive ? 'page' : undefined}
                 >
                   Services
+                  <svg
+                    aria-hidden="true"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    className="ml-1 inline-block h-4 w-4 align-[-0.125em] transition-transform group-open:rotate-180 motion-reduce:transition-none"
+                  >
+                    <path d="M5.3 7.3a1 1 0 0 1 1.4 0L10 10.6l3.3-3.3a1 1 0 1 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 0-1.4z" />
+                  </svg>
                 </summary>
                 <ul className="bg-primary-50 xl:absolute xl:left-0 xl:top-full xl:z-10 xl:min-w-max xl:rounded-b xl:shadow-lg">
                   {servicesLinks.map((link) => (
