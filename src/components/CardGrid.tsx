@@ -27,17 +27,17 @@ type CardProps = {
 /** A titled card with a short description. Must sit inside a `CardGrid`. */
 export function Card({ title, to, children }: CardProps) {
   return (
-    <li className="rounded-lg bg-neutral-100 p-6 shadow-md">
+    <li className="rounded-xl bg-neutral-100 p-6 shadow-md">
       <h3 className="font-heading text-lg font-semibold">
         {to ? (
-          <Link to={to} className="text-primary-600 hover:text-accent-600 hover:underline">
+          <Link to={to} className="text-primary-600 underline-offset-4 transition-colors hover:text-accent-600 hover:underline">
             {title}
           </Link>
         ) : (
           title
         )}
       </h3>
-      <p className="mt-2 font-body text-sm leading-relaxed text-neutral-700">{children}</p>
+      <p className="mt-2 font-body leading-relaxed text-neutral-700">{children}</p>
     </li>
   )
 }

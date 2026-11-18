@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { ButtonLink, ButtonRow } from '../components/ButtonLink'
 import { PageIntro } from '../components/PageIntro'
-import { textLink } from '../components/prose'
+import { detailTerm, textLink } from '../components/prose'
 import { SectionHeading } from '../components/SectionHeading'
 import { Split, splitImageClassName } from '../components/Split'
 import { contact } from '../site/contact'
@@ -29,6 +29,7 @@ function ContactPage() {
           <img
             src={studioExterior}
             alt="The Resonate Music Therapy Studio sign above the studio entrance"
+            loading="lazy"
             className={splitImageClassName}
           />
         }
@@ -41,7 +42,7 @@ function ContactPage() {
 
         <dl className="mt-8 grid gap-4 font-body text-lg leading-relaxed">
           <div>
-            <dt className="font-heading text-sm font-semibold uppercase tracking-wide text-neutral-600">Phone</dt>
+            <dt className={detailTerm}>Phone</dt>
             <dd>
               <a href={contact.phone.href} className={textLink}>
                 {contact.phone.display}
@@ -49,7 +50,7 @@ function ContactPage() {
             </dd>
           </div>
           <div>
-            <dt className="font-heading text-sm font-semibold uppercase tracking-wide text-neutral-600">Email</dt>
+            <dt className={detailTerm}>Email</dt>
             <dd>
               <a href={contact.email.href} className={`${textLink} break-all`}>
                 {contact.email.display}
@@ -57,7 +58,7 @@ function ContactPage() {
             </dd>
           </div>
           <div>
-            <dt className="font-heading text-sm font-semibold uppercase tracking-wide text-neutral-600">Studio</dt>
+            <dt className={detailTerm}>Studio</dt>
             <dd>
               <address className="not-italic">
                 {contact.address.map((line) => (
@@ -77,7 +78,7 @@ function ContactPage() {
                 href={link.href}
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center gap-2 rounded-lg bg-neutral-100 px-5 py-3 font-heading font-medium text-primary-600 shadow-md hover:text-accent-600"
+                className="flex items-center gap-2 rounded-full bg-neutral-100 px-5 py-3 font-heading font-semibold text-primary-700 shadow-md transition-colors hover:text-accent-700"
               >
                 <img src={socialIcons[link.label]} alt="" className="h-5 w-5" />
                 {link.label}

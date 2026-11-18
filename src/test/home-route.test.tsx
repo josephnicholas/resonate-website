@@ -40,12 +40,13 @@ describe('/ route', () => {
     }
   })
 
-  it('keeps an inline background photo only on the hero', async () => {
+  it('shows the film still in the hero and puts no photo behind any section', async () => {
     const page = await renderRoute('/')
 
-    const main = page.getByRole('heading', { level: 1 }).closest('main')!
-    const withPhoto = [...main.querySelectorAll<HTMLElement>('[style*="background-image"]')]
-    expect(withPhoto).toHaveLength(1)
-    expect(withPhoto[0]).toContainElement(page.getByRole('heading', { level: 1 }))
+    const hero = page.getByRole('heading', { level: 1 }).closest('section')!
+    expect(within(hero).getByRole('img', { name: /playing piano side by side/ })).toBeInTheDocument()
+
+    const main = hero.closest('main')!
+    expect(main.querySelectorAll('[style*="background-image"]')).toHaveLength(0)
   })
 })

@@ -4,6 +4,7 @@ import { AmtaDefinition } from '../components/AmtaDefinition'
 import { ButtonLink, ButtonRow } from '../components/ButtonLink'
 import { ClosingCta } from '../components/ClosingCta'
 import { ImagePlaceholder } from '../components/ImagePlaceholder'
+import { ResonanceRings } from '../components/ResonanceRings'
 import { Section } from '../components/Section'
 import { SectionHeading } from '../components/SectionHeading'
 import { ServiceCards } from '../components/ServiceCards'
@@ -24,25 +25,40 @@ export const Route = createFileRoute('/')({
 function HomePage() {
   return (
     <main>
-      <section
-        className="relative bg-cover bg-top px-4 py-20 sm:py-28"
-        style={{ backgroundImage: `url(${heroPhoto})` }}
-      >
-        <div aria-hidden="true" className="absolute inset-0 bg-primary-900/85" />
-        <div className="relative mx-auto max-w-3xl text-center">
-          <p className="font-heading text-sm font-semibold uppercase tracking-widest text-secondary-300">
-            The only music therapy studio in the Visayas &middot; Dumaguete City
-          </p>
-          <h1 className="mt-4 font-heading text-4xl font-bold text-white sm:text-5xl">
-            {siteRoute('/').heading}
-          </h1>
-          <p className="mt-6 font-body text-lg leading-relaxed text-white sm:text-xl">{TAGLINE}</p>
-          <ButtonRow>
-            <ButtonLink to="/contact">Get in touch</ButtonLink>
-            <ButtonLink href="#our-story" variant="onDark">
-              Watch our story (2 min)
-            </ButtonLink>
-          </ButtonRow>
+      {/*
+        The hero: a still from the studio's film, uncovered, inside the logo's
+        own mark (concentric rings, for resonance), which ripple out once on load.
+      */}
+      <section className="relative overflow-hidden bg-primary-900 px-4 py-14 sm:py-20 lg:py-24">
+        <div className="relative mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-[1.1fr_1fr] lg:gap-8">
+          <div className="relative mx-auto aspect-square w-60 sm:w-72 lg:order-last lg:w-[26rem]">
+            <ResonanceRings
+              animated
+              className="absolute top-1/2 left-1/2 h-[230%] w-[230%] -translate-x-1/2 -translate-y-1/2"
+            />
+            <img
+              src={heroPhoto}
+              alt="A music therapist and a client playing piano side by side at the studio"
+              fetchPriority="high"
+              className="relative h-full w-full rounded-full object-cover object-[58%_50%] ring-4 ring-secondary-300"
+            />
+          </div>
+
+          <div className="relative max-w-xl">
+            <h1 className="font-heading text-4xl font-bold leading-[1.08] text-white sm:text-5xl lg:text-6xl">
+              {siteRoute('/').heading}
+            </h1>
+            <p className="mt-6 font-heading text-xl font-medium text-secondary-200 sm:text-2xl">{TAGLINE}</p>
+            <ButtonRow align="left">
+              <ButtonLink to="/contact">Get in touch</ButtonLink>
+              <ButtonLink href="#our-story" variant="onDark">
+                Watch our story (2 min)
+              </ButtonLink>
+            </ButtonRow>
+            <p className="mt-10 max-w-md font-body text-base leading-relaxed text-primary-100">
+              We&rsquo;re in Dumaguete City, and we&rsquo;re the only music therapy studio in the Visayas.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -79,6 +95,7 @@ function HomePage() {
         <img
           src={tempoTunesLogo}
           alt={tempoTune.name}
+          loading="lazy"
           className="mx-auto mt-6 h-44 w-auto rounded-2xl bg-neutral-100 p-6 shadow-md"
         />
         <div className="mt-6 font-body text-lg leading-relaxed">{tempoTune.summary}</div>

@@ -34,6 +34,7 @@ function AdaptiveMusicLessonsPage() {
           <img
             src={pianoLesson}
             alt="Sheet music open on the studio piano during a lesson"
+            loading="lazy"
             className={splitImageClassName}
           />
         }

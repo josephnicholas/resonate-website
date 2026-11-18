@@ -13,21 +13,21 @@ type ComparisonItem = { title: string; description: string }
 /** A tinted band setting two offerings side by side. Its heading is "A vs. B", from the item titles. */
 export function Comparison({ items, children }: ComparisonProps) {
   return (
-    <section className="bg-secondary-100 px-4 py-12">
+    <section className="bg-secondary-100 px-4 py-12 lg:py-16">
       <div className="mx-auto max-w-4xl">
         <SectionHeading>
           {items[0].title} vs. {items[1].title}
         </SectionHeading>
         <ul className="mt-8 grid gap-6 sm:grid-cols-2">
           {items.map((item) => (
-            <li key={item.title} className="rounded-2xl bg-neutral-50 p-6 shadow-md">
+            <li key={item.title} className="rounded-xl bg-neutral-50 p-6 shadow-md">
               <h3 className="font-heading text-lg font-semibold">{item.title}</h3>
               <p className="mt-2 font-body leading-relaxed text-neutral-700">{item.description}</p>
             </li>
           ))}
         </ul>
         {children && (
-          <p className="mx-auto mt-8 max-w-2xl text-center font-body text-lg leading-relaxed">{children}</p>
+          <p className="mx-auto mt-8 max-w-2xl font-body sm:text-center text-lg leading-relaxed">{children}</p>
         )}
       </div>
     </section>

@@ -28,8 +28,13 @@ describe('/about route', () => {
     expect(within(founder).getByRole('heading', { name: 'Founder and Director', level: 3 })).toBeInTheDocument()
     expect(within(therapist).getByRole('heading', { name: 'Music Therapist', level: 3 })).toBeInTheDocument()
 
+    const founderPortrait = within(founder).getByRole('img', { name: 'Portrait of the studio’s founder and director' })
+    expect(founderPortrait.tagName).toBe('IMG')
+    expect(
+      within(therapist).getByRole('img', { name: /Portrait of the studio’s music therapist \(awaiting/ }),
+    ).toBeInTheDocument()
+
     for (const member of members) {
-      expect(within(member).getByRole('img', { name: /Portrait of the studio’s/ })).toBeInTheDocument()
       expect(within(member).getByText(/their name, if they are willing to be named/)).toBeInTheDocument()
       expect(within(member).getByText(/qualifications, certification/)).toBeInTheDocument()
       expect(within(member).getByText(/a short bio/)).toBeInTheDocument()

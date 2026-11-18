@@ -6,8 +6,11 @@ const base =
 
 // Each variant is a contrast-safe pair (see e2e/accessibility.spec.ts):
 // `primary` anywhere, `secondary` on light grounds, `onDark` on navy or photo overlays.
+// `primary`'s focus indicator is two-tone so it reads on any ground: the magenta
+// outline carries it on light grounds, the white ring at the button's edge on navy.
 const variants = {
-  primary: 'bg-accent-600 text-white hover:bg-accent-700 focus-visible:outline-accent-700',
+  primary:
+    'bg-accent-600 text-white hover:bg-accent-700 focus-visible:outline-accent-700 focus-visible:ring-2 focus-visible:ring-white',
   secondary:
     'border-2 border-primary-600 text-primary-700 hover:bg-primary-600 hover:text-white focus-visible:outline-primary-700',
   onDark: 'border-2 border-white text-white hover:bg-white hover:text-primary-800 focus-visible:outline-white',
@@ -53,6 +56,6 @@ export function ButtonLink(props: ButtonLinkProps) {
 /** A row of `ButtonLink`s at the end of a block; wraps on narrow screens. */
 export function ButtonRow({ align = 'center', children }: { align?: 'center' | 'left'; children: ReactNode }) {
   return (
-    <div className={`mt-8 flex flex-wrap gap-4 ${align === 'center' ? 'justify-center' : ''}`}>{children}</div>
+    <div className={`mt-8 flex flex-wrap gap-4 ${align === 'center' ? 'sm:justify-center' : ''}`}>{children}</div>
   )
 }

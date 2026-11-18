@@ -29,6 +29,7 @@ function TempoTunesPage() {
           <img
             src={tempoTunesLogo}
             alt={`${tempoTune.name} logo`}
+            loading="lazy"
             className="mx-auto w-full max-w-sm rounded-2xl bg-neutral-100 p-6 shadow-md"
           />
         }

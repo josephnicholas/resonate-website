@@ -57,6 +57,20 @@
   --color-neutral-700: #443f3a;
   --color-neutral-800: #2e2a26;
   --color-neutral-900: #1c1916;
+
+  /* Home hero: the logo's rings ripple outward once, then hold. */
+  --animate-resonate: resonate 1.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+
+  @keyframes resonate {
+    from {
+      opacity: 0;
+      transform: scale(0.55);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
 }
 
 @layer base {

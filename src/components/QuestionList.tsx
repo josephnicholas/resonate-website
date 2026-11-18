@@ -14,7 +14,7 @@ type QuestionProps = {
 /** One question and its answer. Must sit inside a `QuestionList`. */
 export function Question({ question, children }: QuestionProps) {
   return (
-    <div className="rounded-lg bg-neutral-100 p-6 shadow-md">
+    <div className="rounded-xl bg-neutral-100 p-6 shadow-md">
       <dt className="font-heading text-lg font-semibold">{question}</dt>
       <dd className="m-0 [&>p]:mt-2 [&>p]:font-body [&>p]:leading-relaxed">{children}</dd>
     </div>
