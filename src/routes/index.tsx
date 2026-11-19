@@ -40,7 +40,7 @@ function HomePage() {
               src={heroPhoto}
               alt="A music therapist and a client playing piano side by side at the studio"
               fetchPriority="high"
-              className="relative h-full w-full rounded-full object-cover object-[58%_50%] ring-4 ring-secondary-300"
+              className="relative h-full w-full rounded-full object-cover object-[45%_50%] ring-4 ring-secondary-300"
             />
           </div>
 
