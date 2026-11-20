@@ -1,8 +1,22 @@
+import { animated, useSpring } from '@react-spring/web'
 import { Link, useRouterState } from '@tanstack/react-router'
 import { useRef, useState } from 'react'
 import logo from '../assets/logo.png'
 import { routesInGroup, SITE_NAME, type SiteRoute } from '../site/routes'
 import { ButtonLink } from './ButtonLink'
+import { useMediaQuery } from './useMediaQuery'
+
+// Below `xl` the nav is a menu that springs open from under the header; from
+// `xl` it is an always-visible row and carries no animation styles at all.
+// Both springs are damped enough not to wobble (restrained motion for a site
+// many neurodivergent children's families use), and skip straight to their
+// end state under `prefers-reduced-motion`.
+const DESKTOP_QUERY = '(min-width: 80rem)'
+const REDUCED_MOTION_QUERY = '(prefers-reduced-motion: reduce)'
+const menuSpring = { tension: 320, friction: 34 }
+const dropdownSpring = { tension: 380, friction: 30 }
+/** The open menu's tallest extent; beyond it, the menu scrolls. */
+const menuCap = () => window.innerHeight * 0.75
 
 const primaryLinks = routesInGroup('primary')
 const servicesLinks = routesInGroup('services')
@@ -51,11 +65,50 @@ export function Nav() {
   const servicesDropdown = useRef<HTMLDetailsElement>(null)
   const pathname = useRouterState({ select: (state) => state.location.pathname })
   const isServicesActive = pathname.startsWith('/services')
+  const isDesktop = useMediaQuery(DESKTOP_QUERY)
+  const reduceMotion = useMediaQuery(REDUCED_MOTION_QUERY)
+
+  const navRef = useRef<HTMLElement>(null)
+  // `maxHeight` of the phone menu. It springs to the menu's own height, then
+  // settles at the cap so opening Services inside it can grow it naturally.
+  const [menu, menuApi] = useSpring(() => ({ maxHeight: 0, config: menuSpring }), [])
+  // Scrolling is only allowed once the menu has finished opening, so no
+  // scrollbar flickers in while it grows.
+  const [menuSettled, setMenuSettled] = useState(false)
+  const [dropdown, dropdownApi] = useSpring(() => ({ opacity: 1, y: 0, config: dropdownSpring }), [])
+
+  const setMenu = (open: boolean, { instant = false } = {}) => {
+    setMobileOpen(open)
+    setMenuSettled(false)
+    const immediate = instant || reduceMotion
+    if (open) {
+      const target = Math.min(navRef.current?.scrollHeight ?? 0, menuCap())
+      void menuApi.start({
+        maxHeight: target,
+        immediate,
+        onRest: (result) => {
+          if (!result.finished) return
+          menuApi.set({ maxHeight: menuCap() })
+          setMenuSettled(true)
+        },
+      })
+    } else {
+      // Close from what is actually showing, not from the cap.
+      menuApi.set({ maxHeight: navRef.current?.offsetHeight ?? 0 })
+      void menuApi.start({ maxHeight: 0, immediate })
+    }
+  }
+
+  const onServicesToggle = (event: React.SyntheticEvent<HTMLDetailsElement>) => {
+    if (!event.currentTarget.open) return
+    void dropdownApi.start({ from: { opacity: 0, y: -8 }, to: { opacity: 1, y: 0 }, immediate: reduceMotion })
+  }
 
   // The nav lives in the root layout, so it survives navigation: without this,
   // the mobile menu and the Services dropdown would stay open over the new page.
+  // The menu shuts instantly here, since the page under it is already changing.
   const closeMenus = () => {
-    setMobileOpen(false)
+    if (mobileOpen) setMenu(false, { instant: true })
     if (servicesDropdown.current) servicesDropdown.current.open = false
   }
 
@@ -79,7 +132,7 @@ export function Nav() {
             className="rounded p-2 text-primary-700 xl:hidden"
             aria-expanded={mobileOpen}
             aria-controls="primary-navigation"
-            onClick={() => setMobileOpen((open) => !open)}
+            onClick={() => setMenu(!mobileOpen)}
           >
             <span className="sr-only">{mobileOpen ? 'Close menu' : 'Open menu'}</span>
             <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2">
@@ -92,10 +145,21 @@ export function Nav() {
           </button>
         </div>
 
-        <nav
+        <animated.nav
+          ref={navRef}
           id="primary-navigation"
           aria-label="Primary"
-          className={`${mobileOpen ? 'block' : 'hidden'} max-h-[75vh] w-full overflow-y-auto xl:block xl:max-h-none xl:w-auto xl:overflow-visible`}
+          className="w-full xl:w-auto"
+          style={
+            isDesktop
+              ? undefined
+              : {
+                  maxHeight: menu.maxHeight,
+                  // Fully shut means out of the tab order and the accessibility tree too.
+                  visibility: menu.maxHeight.to((height) => (height === 0 ? 'hidden' : 'visible')),
+                  overflowY: menuSettled ? 'auto' : 'hidden',
+                }
+          }
         >
           <ul className="flex flex-col xl:flex-row xl:items-center">
             {primaryLinks.map((link) => (
@@ -105,7 +169,7 @@ export function Nav() {
             ))}
 
             <li className="relative">
-              <details ref={servicesDropdown} className="group [&::details-content]:block">
+              <details ref={servicesDropdown} onToggle={onServicesToggle} className="group [&::details-content]:block">
                 <summary
                   className={`${linkClassName} cursor-pointer list-none [&::-webkit-details-marker]:hidden ${
                     isServicesActive ? activeColorClassName : inactiveColorClassName
@@ -122,13 +186,16 @@ export function Nav() {
                     <path d="M5.3 7.3a1 1 0 0 1 1.4 0L10 10.6l3.3-3.3a1 1 0 1 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 0-1.4z" />
                   </svg>
                 </summary>
-                <ul className="bg-primary-50 xl:absolute xl:left-0 xl:top-full xl:z-10 xl:min-w-max xl:rounded-b xl:shadow-lg">
+                <animated.ul
+                  className="bg-primary-50 xl:absolute xl:left-0 xl:top-full xl:z-10 xl:min-w-max xl:rounded-b xl:shadow-lg"
+                  style={{ opacity: dropdown.opacity, transform: dropdown.y.to((y) => `translateY(${y}px)`) }}
+                >
                   {servicesLinks.map((link) => (
                     <li key={link.path}>
                       <NavLink item={link} onNavigate={closeMenus} />
                     </li>
                   ))}
-                </ul>
+                </animated.ul>
               </details>
             </li>
 
@@ -138,7 +205,7 @@ export function Nav() {
               </li>
             ))}
           </ul>
-        </nav>
+        </animated.nav>
       </div>
     </header>
   )
