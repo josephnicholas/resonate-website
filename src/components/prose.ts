@@ -1,0 +1,17 @@
+/**
+ * Body-paragraph styling that `Section` and `Band` apply to their direct `<p>`
+ * children, so routes write plain `<p>` for body copy. A paragraph that needs
+ * different spacing or size should not be a direct child (wrap it).
+ */
+export const proseChildren = '[&>p]:mt-4 [&>p]:font-body [&>p]:text-lg [&>p]:leading-relaxed'
+
+/** An in-copy text link, in the contrast-safe colour pair for light grounds. */
+export const textLink =
+  'font-medium text-primary-600 underline underline-offset-4 transition-colors hover:text-accent-600'
+
+/** An in-copy text link on navy (a `PageIntro` lead). */
+export const textLinkOnDark =
+  'font-medium text-white underline underline-offset-4 transition-colors hover:text-secondary-300'
+
+/** The label above a detail (Contact's phone/email, a team member's name): sentence case, never all caps. */
+export const detailTerm = 'font-heading text-base font-semibold text-primary-700'
